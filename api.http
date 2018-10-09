@@ -1,0 +1,14 @@
+### Create user
+
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "adm77in@admin.com",
+  "password": "qwerty123",
+  "firstName": "Diana",
+  "lastName": "Diana",
+  "nickname": "Diana"
+}
+
+###
