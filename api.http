@@ -4,11 +4,37 @@ POST http://localhost:5000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "adm77in@admin.com",
+  "email": "adm77i7n@admin.com",
   "password": "qwerty123",
   "firstName": "Diana",
   "lastName": "Diana",
   "nickname": "Diana"
 }
 
+### Create group
+
+POST http://localhost:5000/groups
+Content-Type: application/json
+
+{
+  "name": "DianaTest",
+  "adminEmail": "diana.baburina@nure.ua",
+  "membersEmails": ["diana.baburina@code-care.pro"]
+}
+
+### Check user exists
+
+GET http://localhost:5000/users?email=adm77in@admin.com
+Content-Type: application/json
+
+### Create group
+
+POST http://localhost:5000/groups/5bc20ea025bb154f60570fe8/users/5bbce0bc0a8ba4261629bc94
+Content-Type: application/json
+
+{
+  "isAdmin": true
+}
+
 ###
+

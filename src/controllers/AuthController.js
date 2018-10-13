@@ -31,9 +31,9 @@ export default class AuthController {
                 ? ctx.send(200, {
                     user: pick(user, ['_id', 'username', 'email', 'password']),
                 })
-                : ctx.send(400, { message: 'Unable to create user' });
+                : ctx.send(400);
         } catch (error) {
-            return ctx.send(400, { message: error.message });
+            return ctx.send(500, error);
         }
     }
 }

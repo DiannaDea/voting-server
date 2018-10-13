@@ -12,6 +12,16 @@ const UserGroupSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Group',
     },
+    isAdmin: {
+        type: Schema.Types.Boolean,
+    },
+    dateStart: {
+        type: Schema.Types.Date,
+        default: Date.now(),
+    },
+    dateEnd: {
+        type: Schema.Types.Date,
+    },
 });
 
 const UserGroup = mongoose.model('UserGroup', UserGroupSchema);
