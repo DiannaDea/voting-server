@@ -11,18 +11,17 @@ groupsRouter.route({
     path: '/',
     validate: {
         body: {
-            name: Joi.string(),
-            adminEmail: Joi.string(),
+            name: Joi.string().alphanum().min(1).max(30)
+                .required(),
+            adminEmail: Joi.string().email(),
             membersEmails: Joi.array(),
         },
         type: 'json',
         output: {
             200: {
-                body: {
-                    text: Joi.string(),
-                },
+                body: {},
             },
-            400: {
+            500: {
                 body: {
                     error: Joi.object(),
                 },
@@ -44,6 +43,21 @@ groupsRouter.route({
             isAdmin: Joi.boolean(),
         },
         type: 'json',
+        output: {
+            200: {
+                body: {},
+            },
+            400: {
+                body: {
+                    message: Joi.string(),
+                },
+            },
+            500: {
+                body: {
+                    error: Joi.object(),
+                },
+            },
+        },
     },
     handler: GroupsController.addUser,
 });

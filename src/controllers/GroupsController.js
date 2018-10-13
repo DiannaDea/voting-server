@@ -50,7 +50,7 @@ export default class GroupsController {
                 isAdmin,
             });
 
-            return (userGroup) ? ctx.send(200) : ctx.send(400);
+            return (userGroup) ? ctx.send(200) : ctx.send(400, 'Unable to add user to group');
         } catch (error) {
             return ctx.send(500, error);
         }

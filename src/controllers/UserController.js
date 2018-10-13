@@ -11,7 +11,7 @@ export default class UserController {
                 ? ctx.send(200, user)
                 : ctx.send(204, 'No user');
         } catch (error) {
-            return ctx.send(400, error);
+            return ctx.send(500, error);
         }
     }
 }
