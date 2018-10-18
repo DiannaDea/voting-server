@@ -32,7 +32,7 @@ export default class AuthController {
 
             return (user)
                 ? ctx.send(200, {
-                    user: pick(user, ['_id', 'lastname', 'firstname', 'email']),
+                    user: pick(user, ['_id', 'lastName', 'firstName', 'email']),
                 })
                 : ctx.send(400, 'Unable to create');
         } catch (error) {
@@ -42,13 +42,13 @@ export default class AuthController {
 
     static async signIn(ctx) {
         try {
-            return passport.authenticate('local', { session: false }, (err, user) => {
+            return passport.authenticate('local', { session: false }, async (err, user) => {
                 if (err || !user) {
-                    console.log('HERE', err, user);
                     return ctx.send(400, 'Incorrect email or password');
                 }
 
-                ctx.login(user, { session: false });
+                await ctx.login(user, { session: false });
+
                 const token = jwt.sign(
                     pick(user, ['_id', 'email', 'username']),
                     config.token.SECRET, {
@@ -60,6 +60,19 @@ export default class AuthController {
             })(ctx);
         } catch (error) {
             return ctx.send(400, `Unable to login, error: ${error.message}`);
+        }
+    }
+
+    static async signOut(ctx) {
+        try {
+            if (!ctx.isAuthenticated()) {
+                return ctx.send(400, 'Unable to logout');
+            }
+
+            ctx.logout();
+            return ctx.send(200);
+        } catch (error) {
+            return ctx.send(500, error);
         }
     }
 }

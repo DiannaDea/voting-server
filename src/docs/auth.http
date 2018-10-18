@@ -1,0 +1,31 @@
+### Sign in
+
+POST http://localhost:5000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "admin11@admin.admin",
+  "password": "qwerty123"
+}
+
+
+### Sign up
+
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "adminssssss11@admin.admin",
+  "password": "qwerty123",
+  "firstName": "Betty",
+  "lastName": "Betty",
+  "nickname": "Betty"
+}
+
+### Sign out
+
+POST http://localhost:5000/auth/signout
+Content-Type: application/json
+
+###
+

@@ -1,0 +1,27 @@
+### Check user exists
+
+GET http://localhost:5000/users?email=adm77i7n@admin.com
+Content-Type: application/json
+
+### Get user groups
+
+GET http://localhost:5000/users/5bc89263ba9dc6063f95eadd/groups
+Content-Type: application/json
+
+### Join group
+
+POST http://localhost:5000/users/5bc89263ba9dc6063f95eadd/groups/5bc8926bba9dc6063f95eade
+Content-Type: application/json
+
+{
+  "isAdmin": true
+}
+
+### Leave group
+
+PUT http://localhost:5000/users/5bc89263ba9dc6063f95eadd/groups/5bc8926bba9dc6063f95eade
+Content-Type: application/json
+
+###
+
+

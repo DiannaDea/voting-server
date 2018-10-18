@@ -22,29 +22,6 @@ authRouter.route({
                 .required(),
         },
         type: 'json',
-        output: {
-            200: {
-                body: {
-                    user: {
-                        _id: Joi.string(),
-                        email: Joi.string(),
-                        firstName: Joi.string(),
-                        lastName: Joi.string(),
-                        nickname: Joi.string(),
-                    },
-                },
-            },
-            400: {
-                body: {
-                    message: Joi.string(),
-                },
-            },
-            500: {
-                body: {
-                    error: Joi.object(),
-                },
-            },
-        },
     },
     handler: AuthController.signUp,
 });
@@ -60,6 +37,12 @@ authRouter.route({
         type: 'json',
     },
     handler: AuthController.signIn,
+});
+
+authRouter.route({
+    method: 'post',
+    path: '/signout',
+    handler: AuthController.signOut,
 });
 
 export default authRouter;

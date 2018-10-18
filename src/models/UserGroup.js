@@ -21,6 +21,7 @@ const UserGroupSchema = Schema({
     },
     dateEnd: {
         type: Schema.Types.Date,
+        default: null,
     },
 });
 

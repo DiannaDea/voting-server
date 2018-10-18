@@ -1,0 +1,12 @@
+### Create group
+
+POST http://localhost:5000/groups
+Content-Type: application/json
+
+{
+  "name": "DianaTest3",
+  "adminEmail": "diana.baburina@nure.ua",
+  "membersEmails": ["diana.baburina@code-care.pro"]
+}
+
+###

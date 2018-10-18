@@ -8,28 +8,49 @@ usersRouter.prefix('/users');
 
 usersRouter.route({
     method: 'get',
-    path: '/',
+    path: '/:userId/groups',
     validate: {
+        params: {
+            userId: Joi.string().required(),
+        },
+    },
+    handler: UsersController.getGroups,
+});
+
+usersRouter.route({
+    method: 'post',
+    path: '/:userId/groups/:groupId',
+    validate: {
+        params: {
+            groupId: Joi.string(),
+            userId: Joi.string(),
+        },
         body: {
-            email: Joi.string().email(),
+            isAdmin: Joi.boolean(),
         },
         type: 'json',
-        output: {
-            200: {
-                body: {
-                    user: Joi.object(),
-                },
-            },
-            204: {
-                body: {
-                    message: Joi.string(),
-                },
-                500: {
-                    body: {
-                        error: Joi.object(),
-                    },
-                },
-            },
+    },
+    handler: UsersController.joinGroup,
+});
+
+usersRouter.route({
+    method: 'put',
+    path: '/:userId/groups/:groupId',
+    validate: {
+        params: {
+            userId: Joi.string().required(),
+            groupId: Joi.string().required(),
+        },
+    },
+    handler: UsersController.leaveGroup,
+});
+
+usersRouter.route({
+    method: 'get',
+    path: '/',
+    validate: {
+        query: {
+            email: Joi.string().email(),
         },
     },
     handler: UsersController.get,
