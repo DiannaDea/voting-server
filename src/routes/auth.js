@@ -49,4 +49,17 @@ authRouter.route({
     handler: AuthController.signUp,
 });
 
+authRouter.route({
+    method: 'post',
+    path: '/signin',
+    validate: {
+        body: {
+            email: Joi.string().email(),
+            password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+        },
+        type: 'json',
+    },
+    handler: AuthController.signIn,
+});
+
 export default authRouter;

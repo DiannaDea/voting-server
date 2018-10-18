@@ -1,3 +1,14 @@
+### Sign in
+
+POST http://localhost:5000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "adm77i7n@admin.com",
+  "password": "qwerty123"
+}
+
+
 ### Create user
 
 POST http://localhost:5000/auth/signup
@@ -35,6 +46,4 @@ Content-Type: application/json
 {
   "isAdmin": true
 }
-
-###
 
