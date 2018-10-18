@@ -5,7 +5,7 @@ const devConfig = {
     },
     mail: {
         EMAIL: 'dianababurina74@gmail.com',
-        PASSWORD: 'baburina300998',
+        PASSWORD: '',
         SERVICE: 'gmail',
     },
 

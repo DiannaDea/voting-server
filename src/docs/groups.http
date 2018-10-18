@@ -4,9 +4,9 @@ POST http://localhost:5000/groups
 Content-Type: application/json
 
 {
-  "name": "DianaTest3",
-  "adminEmail": "diana.baburina@nure.ua",
-  "membersEmails": ["diana.baburina@code-care.pro"]
+  "name": "Test1",
+  "adminEmail": "test1@test.test",
+  "membersEmails": ["test2@test.test", "test3@test.test"]
 }
 
 ###

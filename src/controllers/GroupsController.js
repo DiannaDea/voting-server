@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 import Group from '../models/Group';
 import MailService from '../services/mail';
+import errors from '../errors';
+
+const groupsError = errors.groups;
 
 const { HOST, PORT } = process.env;
 
@@ -35,5 +38,15 @@ export default class GroupsController {
         } catch (error) {
             return ctx.send(500, error);
         }
+    }
+
+    static async groupExists(ctx, next) {
+        const { groupId } = ctx.params;
+        const group = await Group.findById(groupId);
+
+        if (!group) {
+            return ctx.send(400, groupsError.noSuchId(groupId));
+        }
+        return next();
     }
 }

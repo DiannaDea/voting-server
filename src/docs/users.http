@@ -5,21 +5,21 @@ Content-Type: application/json
 
 ### Get user groups
 
-GET http://localhost:5000/users/5bc89263ba9dc6063f95eadd/groups
+GET http://localhost:5000/users/5bc8a86d9c3d232278530a49/groups
 Content-Type: application/json
 
 ### Join group
 
-POST http://localhost:5000/users/5bc89263ba9dc6063f95eadd/groups/5bc8926bba9dc6063f95eade
+POST http://localhost:5000/users/5bc8a86d9c3d232278530a49/groups/5bc8a83e9c3d232278530a46
 Content-Type: application/json
 
 {
-  "isAdmin": true
+  "isAdmin": false
 }
 
 ### Leave group
 
-PUT http://localhost:5000/users/5bc89263ba9dc6063f95eadd/groups/5bc8926bba9dc6063f95eade
+PUT http://localhost:5000/users/5bc8a86d9c3d232278530a49/groups/5bc8a83e9c3d232278530a46
 Content-Type: application/json
 
 ###

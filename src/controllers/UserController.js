@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import User from '../models/User';
 import Group from '../models/Group';
 import UserGroup from '../models/UserGroup';
+import errorMessages from '../errors';
+
+const userErrors = errorMessages.users;
 
 export default class UserController {
     static async get(ctx) {
@@ -13,7 +16,7 @@ export default class UserController {
 
             return (user)
                 ? ctx.send(200, user)
-                : ctx.send(204, 'No user');
+                : ctx.send(204);
         } catch (error) {
             return ctx.send(500, error);
         }
@@ -50,13 +53,20 @@ export default class UserController {
         const { isAdmin } = ctx.request.body;
 
         try {
+            if (await UserGroup.findOne({ groupId, userId })) {
+                return ctx.send(400, userErrors.userIsAlreadyInGroup);
+            }
+
             const userGroup = await UserGroup.create({
                 _id: new mongoose.Types.ObjectId(),
                 groupId,
                 userId,
                 isAdmin,
             });
-            return (userGroup) ? ctx.send(200) : ctx.send(400, 'Unable to add user to group');
+
+            return (userGroup)
+                ? ctx.send(200)
+                : ctx.send(400, userErrors.unableToJoinGroup);
         } catch (error) {
             return ctx.send(500, error);
         }
@@ -73,10 +83,20 @@ export default class UserController {
             });
 
             return (updGroup)
-                ? ctx.send(200, updGroup)
-                : ctx.send(204);
+                ? ctx.send(200)
+                : ctx.send(400, userErrors.unableToLeaveGroup);
         } catch (error) {
             return ctx.send(500, error);
         }
+    }
+
+    static async userExists(ctx, next) {
+        const { userId } = ctx.params;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return ctx.send(400, userErrors.noSuchId(userId));
+        }
+        return next();
     }
 }

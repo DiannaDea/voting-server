@@ -4,7 +4,7 @@ POST http://localhost:5000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "admin11@admin.admin",
+  "email": "test3@test.test",
   "password": "qwerty123"
 }
 
@@ -15,11 +15,11 @@ POST http://localhost:5000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "adminssssss11@admin.admin",
+  "email": "test3@test.test",
   "password": "qwerty123",
-  "firstName": "Betty",
-  "lastName": "Betty",
-  "nickname": "Betty"
+  "firstName": "Mark",
+  "lastName": "Mark",
+  "nickname": "Mark"
 }
 
 ### Sign out

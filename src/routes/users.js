@@ -1,10 +1,13 @@
 import router from 'koa-joi-router';
 import UsersController from '../controllers/UserController';
+import GroupsController from '../controllers/GroupsController';
 
 const usersRouter = router();
 const { Joi } = router;
 
 usersRouter.prefix('/users');
+
+usersRouter.use('/:userId/groups', UsersController.userExists);
 
 usersRouter.route({
     method: 'get',
@@ -16,6 +19,8 @@ usersRouter.route({
     },
     handler: UsersController.getGroups,
 });
+
+usersRouter.use('/:userId/groups/:groupId', GroupsController.groupExists);
 
 usersRouter.route({
     method: 'post',
