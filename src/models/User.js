@@ -5,24 +5,24 @@ const { Schema } = mongoose;
 const UserSchema = Schema({
     _id: Schema.Types.ObjectId,
     email: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
         unique: true,
     },
     password: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
     },
     firstName: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
     },
     lastName: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
     },
     nickname: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
     },
 });

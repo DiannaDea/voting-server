@@ -5,13 +5,9 @@ const { Schema } = mongoose;
 const GroupSchema = Schema({
     _id: Schema.Types.ObjectId,
     name: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
     },
-    votings: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Voting',
-    }],
 });
 
 const Group = mongoose.model('Group', GroupSchema);

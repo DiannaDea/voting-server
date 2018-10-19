@@ -16,6 +16,9 @@ const errors = {
         unableToLogout: 'Unable to logout',
         userWithEmailExists: 'User with such email already exists',
     },
+    votings: {
+        unableToCreate: 'Unable to create voting with such params',
+    },
 };
 
 export default errors;

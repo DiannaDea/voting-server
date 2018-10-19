@@ -1,0 +1,28 @@
+### Create voting, voting candidates and coefficients
+
+POST http://localhost:5000/votings
+Content-Type: application/json
+
+{
+  "topic": "Test voting",
+  "groupId": "5bc8a83e9c3d232278530a46",
+  "creatorId": "5bc8a8649c3d232278530a48",
+  "dateStart": "Mon Dec 24 2018 10:33:00 GMT+0200 (Eastern European Standard Time)",
+  "dateEnd": "Sun Dec 30 2018 10:33:00 GMT+0200 (Eastern European Standard Time)",
+  "votersPercent": 50,
+  "candidates": [{ "name": "Candidate 1",  "description": "Candidate 1 description"}],
+  "coefficients": [{"name": "Coeff 1", "question": "Coeff question", "value": 50}]
+}
+
+### Get voting
+
+GET http://localhost:5000/votings/5bc99be229df50223c83f3ec
+Content-Type: application/json
+
+### Delete voting
+
+DELETE http://localhost:5000/votings/5bc99be229df50223c83f3ec
+Content-Type: application/json
+
+###
+

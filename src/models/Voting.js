@@ -5,8 +5,18 @@ const { Schema } = mongoose;
 const VotingSchema = Schema({
     _id: Schema.Types.ObjectId,
     topic: {
-        type: String,
+        type: Schema.Types.String,
         required: true,
+    },
+    status: {
+        type: Schema.Types.String,
+        required: true,
+        enum: ['created', 'pending', 'finished'],
+        default: 'created',
+    },
+    groupId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Group',
     },
     creatorId: {
         type: Schema.Types.ObjectId,
@@ -22,12 +32,26 @@ const VotingSchema = Schema({
         type: Schema.Types.Number,
     },
     candidates: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Candidate',
+        _id: Schema.Types.ObjectId,
+        name: {
+            type: Schema.Types.String,
+            required: true,
+        },
+        description: Schema.Types.String,
     }],
     coefficients: [{
-        type: Schema.Types.ObjectId,
-        ref: 'VotingCoeff',
+        _id: Schema.Types.ObjectId,
+        name: {
+            type: Schema.Types.String,
+            required: true,
+        },
+        question: {
+            type: Schema.Types.String,
+            required: true,
+        },
+        value: {
+            type: Schema.Types.Number,
+        },
     }],
 });
 
