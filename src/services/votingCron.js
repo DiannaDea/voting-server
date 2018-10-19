@@ -1,29 +1,52 @@
 import schedule from 'node-schedule';
-import moment from 'moment-timezone';
+import moment from 'moment';
 import Voting from '../models/Voting';
 
 export default class VotingCron {
     constructor() {
         this.cronStartVoting = null;
+        this.cronEndVoting = null;
     }
 
-    start() {
+    startVoting() {
         this.cronStartVoting = schedule.scheduleJob('*/1 * * * *', async () => {
-            const now = moment().tz('Europe/Zaporozhye');
-            const hourAgo = moment().tz('Europe/Zaporozhye').subtract({ hour: 1 });
-            console.log(now, hourAgo);
+            const now = moment().utc();
+            const hourAgo = moment().subtract({ hour: 1 }).utc();
 
-            const votings = await Voting.find({
+            await Voting.updateMany({
+                status: 'created',
                 dateStart: {
                     $gt: hourAgo,
                     $lt: now,
                 },
+            }, {
+                status: 'pending',
             });
-            console.log('HERE', votings);
         });
     }
 
-    cancel() {
-        this.votingCron.cancel();
+    endVoting() {
+        this.cronEndVoting = schedule.scheduleJob('*/1 * * * *', async () => {
+            const now = moment().utc();
+            const hourAgo = moment().subtract({ hour: 1 }).utc();
+
+            await Voting.updateMany({
+                status: 'pending',
+                dateEnd: {
+                    $gt: hourAgo,
+                    $lt: now,
+                },
+            }, {
+                status: 'finished',
+            });
+        });
+    }
+
+    cancelStartVoting() {
+        this.cronStartVoting.cancel();
+    }
+
+    cancelEndVoting() {
+        this.cronEndVoting.cancel();
     }
 }

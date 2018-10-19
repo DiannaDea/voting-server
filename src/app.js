@@ -20,7 +20,8 @@ app.use(respond());
 app.use(logger());
 app.use(passport.initialize());
 
-votingCron.start();
+votingCron.startVoting();
+votingCron.endVoting();
 
 routes.forEach(route => app.use(route));
 
