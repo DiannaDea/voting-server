@@ -28,6 +28,8 @@ votingsRouter.route({
     handler: VotingController.create,
 });
 
+votingsRouter.use('/:votingId', VotingController.votingExists);
+
 votingsRouter.route({
     method: 'get',
     path: '/:votingId',

@@ -68,4 +68,14 @@ export default class VotingController {
             return ctx.send(500, error);
         }
     }
+
+    static async votingExists(ctx, next) {
+        const { votingId } = ctx.params;
+        const voting = await Voting.findById(votingId);
+
+        if (!voting) {
+            return ctx.send(400, votingErrors.noSuchId(votingId));
+        }
+        return next();
+    }
 }

@@ -18,6 +18,7 @@ const errors = {
     },
     votings: {
         unableToCreate: 'Unable to create voting with such params',
+        noSuchId: id => `No voting with such id ${id}`,
     },
     candidates: {
         unableToCreate: 'Unable to create candidate with such params',

@@ -52,7 +52,6 @@ candidatesRoute.route({
             candidateId: Joi.string().required(),
         },
         body: {
-            name: Joi.string(),
             description: Joi.string(),
         },
         type: 'json',
