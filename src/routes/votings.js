@@ -17,10 +17,6 @@ votingsRouter.route({
             dateStart: Joi.date().required(),
             dateEnd: Joi.date().required(),
             votersPercent: Joi.number().min(1).max(100).required(),
-            candidates: Joi.array().items(Joi.object({
-                name: Joi.string().required(),
-                description: Joi.string().required(),
-            })).required(),
             coefficients: Joi.array().items(Joi.object({
                 name: Joi.string().required(),
                 question: Joi.string().required(),
@@ -58,6 +54,9 @@ votingsRouter.route({
     method: 'put',
     path: '/:votingId',
     validate: {
+        params: {
+            votingId: Joi.string().required(),
+        },
         body: {
             topic: Joi.string(),
             votersPercent: Joi.number().min(1).max(100),

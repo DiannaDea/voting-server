@@ -31,14 +31,6 @@ const VotingSchema = Schema({
     votersPercent: {
         type: Schema.Types.Number,
     },
-    candidates: [{
-        _id: Schema.Types.ObjectId,
-        name: {
-            type: Schema.Types.String,
-            required: true,
-        },
-        description: Schema.Types.String,
-    }],
     coefficients: [{
         _id: Schema.Types.ObjectId,
         name: {

@@ -25,6 +25,7 @@ export default class VotingController {
 
     static async get(ctx) {
         const { votingId } = ctx.params;
+
         try {
             const voting = await Voting.findById(votingId);
 
@@ -50,7 +51,21 @@ export default class VotingController {
             return ctx.send(500, error);
         }
     }
-    static async update(ctx) {
 
+    static async update(ctx) {
+        const { votingId } = ctx.params;
+        const updateParams = ctx.request.body;
+
+        try {
+            const voting = await Voting.findOneAndUpdate({
+                _id: votingId,
+            }, updateParams);
+
+            return (voting)
+                ? ctx.send(200, voting)
+                : ctx.send(400);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
     }
 }

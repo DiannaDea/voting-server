@@ -1,0 +1,30 @@
+### Create candidate for voting
+
+POST http://localhost:5000/candidates
+Content-Type: application/json
+
+{
+  "votingId": "5bc9da8fde27d540947ffa0b",
+  "name": "Ben",
+  "description": "Ben candidate"
+}
+
+### Get candidate
+
+GET http://localhost:5000/candidates/6bc9e03b80c69b470655012a
+
+### Delete candidate
+
+DELETE http://localhost:5000/candidates/5bc9e03b80c69b470655012a
+
+### Update candidate
+
+PUT http://localhost:5000/candidates/5bc9db6c84f54c411dc4c6fa
+Content-Type: application/json
+
+{
+  "name": "Anna S",
+  "description": "pending"
+}
+
+###

@@ -1,13 +1,13 @@
 const errors = {
     users: {
         notExist: 'No user',
-        noSuchId: userId => `No user with such id ${userId}`,
+        noSuchId: id => `No user with such id ${id}`,
         unableToJoinGroup: 'Unable to add user to group',
         unableToLeaveGroup: 'Unable to leave group',
         userIsAlreadyInGroup: 'User is already group member',
     },
     groups: {
-        noSuchId: groupId => `No user with such id ${groupId}`,
+        noSuchId: id => `No user with such id ${id}`,
     },
     auth: {
         generateHashErr: 'Unable to generate hash',
@@ -18,6 +18,11 @@ const errors = {
     },
     votings: {
         unableToCreate: 'Unable to create voting with such params',
+    },
+    candidates: {
+        unableToCreate: 'Unable to create candidate with such params',
+        unableToDeleteVotingStarted: 'Unable to delete because voting is already started',
+        noSuchId: id => `No candidate with such id ${id}`,
     },
 };
 
