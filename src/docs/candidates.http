@@ -4,7 +4,7 @@ POST http://localhost:5000/candidates
 Content-Type: application/json
 
 {
-  "votingId": "5bc9da8fde27d540947ffa0b",
+  "votingId": "5bc9e6d40674454c24c1dfc4",
   "name": "Ben",
   "description": "Ben candidate"
 }

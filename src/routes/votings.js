@@ -32,6 +32,17 @@ votingsRouter.use('/:votingId', VotingController.votingExists);
 
 votingsRouter.route({
     method: 'get',
+    path: '/:votingId/candidates',
+    validate: {
+        params: {
+            votingId: Joi.string().required(),
+        },
+    },
+    handler: VotingController.getAllCandidates,
+});
+
+votingsRouter.route({
+    method: 'get',
     path: '/:votingId',
     validate: {
         params: {

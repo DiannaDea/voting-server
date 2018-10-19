@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 import Voting from '../models/Voting';
 import errors from '../errors';
+import Candidate from '../models/Candidate';
 
 const votingErrors = errors.votings;
 
@@ -40,9 +41,14 @@ export default class VotingController {
     static async delete(ctx) {
         const { votingId } = ctx.params;
         try {
-            const voting = await Voting.findOneAndDelete({
-                _id: votingId,
-            });
+            const voting = await Voting.findById(votingId);
+
+            if (voting.status === 'pending') {
+                return ctx.send(400, votingErrors.unableToDeleteVotingStarted);
+            }
+
+            await Candidate.deleteMany({ votingId });
+            await voting.remove();
 
             return (voting)
                 ? ctx.send(200, voting)
@@ -64,6 +70,20 @@ export default class VotingController {
             return (voting)
                 ? ctx.send(200, voting)
                 : ctx.send(400);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
+    static async getAllCandidates(ctx) {
+        const { votingId } = ctx.params;
+
+        try {
+            const candidates = await Candidate.find({ votingId });
+
+            return (candidates)
+                ? ctx.send(200, candidates)
+                : ctx.send(204);
         } catch (error) {
             return ctx.send(500, error);
         }

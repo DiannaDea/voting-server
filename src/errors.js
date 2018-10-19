@@ -18,6 +18,7 @@ const errors = {
     },
     votings: {
         unableToCreate: 'Unable to create voting with such params',
+        unableToDeleteVotingStarted: 'Unable to delete because voting is already started',
         noSuchId: id => `No voting with such id ${id}`,
     },
     candidates: {

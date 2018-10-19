@@ -16,12 +16,10 @@ Content-Type: application/json
 ### Get voting
 
 GET http://localhost:5000/votings/5bc9da58de27d540947ffa0a
-Content-Type: application/json
 
 ### Delete voting
 
-DELETE http://localhost:5000/votings/5bc9da58de27d540947ffa0a
-Content-Type: application/json
+DELETE http://localhost:5000/votings/5bc9e5560449594aa9c197f3
 
 ### Update voting
 
@@ -34,8 +32,8 @@ Content-Type: application/json
   "votersPercent": 70
 }
 
-### Delete candidate from voting
+### Get voting candidates
 
-DELETE http://localhost:5000/votings/5bc9d475b26bb03b383962a2/candidates/
-Content-Type: application/json
+GET http://localhost:5000/votings/5bc9e6d40674454c24c1dfc4/candidates
 
+###
