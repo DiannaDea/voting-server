@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import timeZone from 'mongoose-timezone';
 
 const { Schema } = mongoose;
 
@@ -47,6 +48,7 @@ const VotingSchema = Schema({
     }],
 });
 
+VotingSchema.plugin(timeZone, { paths: ['dateStart', 'dateEnd'] });
 const Voting = mongoose.model('Voting', VotingSchema);
 
 export default Voting;

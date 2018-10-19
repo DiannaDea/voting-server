@@ -7,8 +7,8 @@ Content-Type: application/json
   "topic": "Test voting",
   "groupId": "5bc8a83e9c3d232278530a46",
   "creatorId": "5bc8a8649c3d232278530a48",
-  "dateStart": "Mon Dec 24 2018 10:33:00 GMT+0200 (Eastern European Standard Time)",
-  "dateEnd": "Sun Dec 30 2018 10:33:00 GMT+0200 (Eastern European Standard Time)",
+  "dateStart": "Fri Oct 19 2018 19:27:28 GMT+0300 (Eastern European Summer Time)",
+  "dateEnd": "Sun Nov 25 2018 10:00:00 GMT+0300 (Eastern European Standard Time)",
   "votersPercent": 50,
   "coefficients": [{"name": "Coeff 1", "question": "Coeff question", "value": 50}]
 }

@@ -5,18 +5,22 @@ import passport from 'koa-passport';
 import logger from 'koa-logger';
 
 import connectToDb from './services/dbConnection';
+import VotingCron from './services/votingCron';
 import routes from './routes';
 import './services/passport';
+
+const votingCron = new VotingCron();
 
 dotenv.config();
 connectToDb();
 
 const app = new Koa();
 
-// app.use(bodyParser());
 app.use(respond());
 app.use(logger());
 app.use(passport.initialize());
+
+votingCron.start();
 
 routes.forEach(route => app.use(route));
 
