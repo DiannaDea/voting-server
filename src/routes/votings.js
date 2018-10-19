@@ -80,4 +80,20 @@ votingsRouter.route({
     handler: VotingController.update,
 });
 
+votingsRouter.route({
+    method: 'post',
+    path: '/:votingId/vote',
+    validate: {
+        params: {
+            votingId: Joi.string().required(),
+        },
+        body: {
+            userId: Joi.string().required(),
+            candidateId: Joi.string().required(),
+        },
+        type: 'json',
+    },
+    handler: VotingController.vote,
+});
+
 export default votingsRouter;

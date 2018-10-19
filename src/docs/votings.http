@@ -36,4 +36,14 @@ Content-Type: application/json
 
 GET http://localhost:5000/votings/5bc9e6d40674454c24c1dfc4/candidates
 
+### Vote
+
+POST http://localhost:5000/votings/5bc9e6d40674454c24c1dfc4/vote
+Content-Type: application/json
+
+{
+  "userId": "6bc8a8599c3d232278530a47",
+  "candidateId": "5bc9e6e10674454c24c1dfc5"
+}
+
 ###

@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 
 import Voting from '../models/Voting';
-import errors from '../errors';
 import Candidate from '../models/Candidate';
+import User from '../models/User';
+import Vote from '../models/Vote';
+
+import errors from '../errors';
 
 const votingErrors = errors.votings;
 
@@ -84,6 +87,30 @@ export default class VotingController {
             return (candidates)
                 ? ctx.send(200, candidates)
                 : ctx.send(204);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
+    static async vote(ctx) {
+        const { votingId } = ctx.params;
+        const { userId, candidateId } = ctx.request.body;
+
+        try {
+            if (await Vote.findOne({ votingId, userId })) {
+                return ctx.send(400, votingErrors.userAlreadyVoted);
+            } if (!(await User.findById(userId) || !(await Candidate.findById(candidateId)))) {
+                return ctx.send(400);
+            }
+
+            const vote = await Vote.create({
+                _id: new mongoose.Types.ObjectId(),
+                votingId,
+                userId,
+                candidateId,
+            });
+
+            return (vote) ? ctx.send(200) : ctx.send(400);
         } catch (error) {
             return ctx.send(500, error);
         }
