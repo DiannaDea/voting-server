@@ -1,13 +1,13 @@
 import nodemailer from 'nodemailer';
-import CONFIG from '../config';
+import config from 'config';
 
 export default class MailService {
     static getTransporter() {
         return nodemailer.createTransport({
-            service: CONFIG.mail.SERVICE,
+            service: config.mail.service,
             auth: {
-                user: CONFIG.mail.EMAIL,
-                pass: CONFIG.mail.PASSWORD,
+                user: config.mail.email,
+                pass: config.mail.password,
             },
         });
     }
@@ -16,7 +16,7 @@ export default class MailService {
         const transporter = MailService.getTransporter();
 
         const mailOptions = {
-            from: CONFIG.mail.EMAIL,
+            from: config.mail.email,
             to,
             subject,
             text,

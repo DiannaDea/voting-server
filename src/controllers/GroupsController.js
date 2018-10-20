@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
+import config from 'config';
 
 import Group from '../models/Group';
 import MailService from '../services/mail';
 import errors from '../errors';
 
 const groupsError = errors.groups;
-
-const { HOST, PORT } = process.env;
+const { host, port } = config.app;
 
 export default class GroupsController {
     static async create(ctx) {
@@ -21,7 +21,7 @@ export default class GroupsController {
             const emails = [adminEmail, ...membersEmails];
 
             await Promise.all(emails.map(async (email) => {
-                let linkToJoin = `http://${HOST}:${PORT}/auth/signup?group=${group._id}&email=${email}`;
+                let linkToJoin = `http://${host}:${port}/auth/signup?group=${group._id}&email=${email}`;
 
                 if (email === adminEmail) {
                     linkToJoin += '&isAdmin=true';

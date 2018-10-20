@@ -1,11 +1,10 @@
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import passportLocal from 'passport-local';
-
 import bcryptjs from 'bcryptjs';
+import config from 'config';
 
 import User from '../models/User';
-import devConfig from '../config/devConfig';
 
 const LocalStrategy = passportLocal.Strategy;
 
@@ -18,7 +17,7 @@ const localOptions = {
 };
 const jwtOptions = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: devConfig.token.SECRET,
+    secretOrKey: config.token.secret,
 };
 
 

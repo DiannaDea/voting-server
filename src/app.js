@@ -1,5 +1,4 @@
 import Koa from 'koa';
-import dotenv from 'dotenv';
 import respond from 'koa-respond';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
@@ -11,7 +10,6 @@ import './services/passport';
 
 const votingCron = new VotingCron();
 
-dotenv.config();
 connectToDb();
 
 const app = new Koa();

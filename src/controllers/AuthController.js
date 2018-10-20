@@ -3,9 +3,9 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import pick from 'lodash.pick';
+import config from 'config';
 
 import User from '../models/User';
-import config from '../config';
 import errors from '../errors';
 
 const authErrors = errors.auth;
@@ -58,8 +58,8 @@ export default class AuthController {
 
                 const token = jwt.sign(
                     pick(user, ['_id', 'email', 'username']),
-                    config.token.SECRET, {
-                        expiresIn: config.token.EXPIRES_IN,
+                    config.token.secret, {
+                        expiresIn: config.token.expiresIn,
                     },
                 );
 

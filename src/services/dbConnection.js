@@ -1,4 +1,5 @@
 import Mongoose from 'mongoose';
+import config from 'config';
 
 Mongoose.set('debug', true);
 Mongoose.Promise = global.Promise;
@@ -6,10 +7,10 @@ Mongoose.Promise = global.Promise;
 const connectToDb = async () => {
     try {
         const {
-            DB_USER, DB_HOST, DB_NAME, DB_PORT, DB_PASS,
-        } = process.env;
+            user, host, name, port, password,
+        } = config.db;
 
-        const connString = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+        const connString = `mongodb://${user}:${password}@${host}:${port}/${name}`;
 
         await Mongoose.connect(connString, { useNewUrlParser: true });
 
