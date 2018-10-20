@@ -18,6 +18,7 @@
     "koa-logger": "^3.2.0",
     "koa-passport": "^4.1.1",
     "koa-respond": "^2.1.0",
+    "koa-static": "^5.0.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "moment": "^2.22.2",
@@ -29,7 +30,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^5.6.1",
+    "eslint": "5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "nodemon": "^1.18.4"
@@ -38,6 +39,7 @@
     "server": "babel-node ./src/index.js",
     "dev": "nodemon ./src/index.js --exec babel-node",
     "build": "babel src -d dist",
+    "prestart": "npm run build && cd client && npm run build",
     "start": "node dist/index.js",
     "prod": "npm run build && npm run start"
   },

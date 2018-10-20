@@ -2,6 +2,8 @@ import Koa from 'koa';
 import respond from 'koa-respond';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
+import koaStatic from 'koa-static';
+import path from 'path';
 
 import connectToDb from './services/dbConnection';
 import VotingCron from './services/votingCron';
@@ -14,6 +16,7 @@ connectToDb();
 
 const app = new Koa();
 
+app.use(koaStatic(path.resolve(__dirname, '../client/build')))
 app.use(respond());
 app.use(logger());
 app.use(passport.initialize());
