@@ -1,8 +1,4 @@
 {
-    "app": {
-        "host": "localhost",
-        "port": 5000
-    },
     "db": {
         "name": "voting-db",
         "host": "ds125713.mlab.com",
