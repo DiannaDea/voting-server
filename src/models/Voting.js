@@ -32,7 +32,7 @@ const VotingSchema = Schema({
         type: Schema.Types.Number,
     },
     coefficients: [{
-        _id: Schema.Types.ObjectId,
+        _id: Schema.Types.Number,
         name: {
             type: Schema.Types.String,
             required: true,
@@ -41,7 +41,7 @@ const VotingSchema = Schema({
             type: Schema.Types.String,
             required: true,
         },
-        value: {
+        cost: {
             type: Schema.Types.Number,
         },
     }],

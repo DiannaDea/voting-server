@@ -18,9 +18,10 @@ votingsRouter.route({
             dateEnd: Joi.date().required(),
             votersPercent: Joi.number().min(1).max(100).required(),
             coefficients: Joi.array().items(Joi.object({
+                _id: Joi.number().required(),
                 name: Joi.string().required(),
                 question: Joi.string().required(),
-                value: Joi.number().min(1).max(100).required(),
+                cost: Joi.number().min(1).max(100).required(),
             })),
         },
         type: 'json',
@@ -90,6 +91,10 @@ votingsRouter.route({
         body: {
             userId: Joi.string().required(),
             candidateId: Joi.string().required(),
+            coefficientValues: Joi.array().items(Joi.object({
+                _id: Joi.number().required(),
+                value: Joi.number().required(),
+            })),
         },
         type: 'json',
     },

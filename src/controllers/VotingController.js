@@ -4,6 +4,7 @@ import Voting from '../models/Voting';
 import Candidate from '../models/Candidate';
 import User from '../models/User';
 import Vote from '../models/Vote';
+import VotingResult from '../models/VotingResults';
 
 import errors from '../errors';
 
@@ -94,12 +95,16 @@ export default class VotingController {
 
     static async vote(ctx) {
         const { votingId } = ctx.params;
-        const { userId, candidateId } = ctx.request.body;
+        const { userId, candidateId, ...voteParams } = ctx.request.body;
 
         try {
-            if (await Vote.findOne({ votingId, userId })) {
+            if (await Vote.findOne({
+                votingId,
+                userId,
+            })) {
                 return ctx.send(400, votingErrors.userAlreadyVoted);
-            } if (!(await User.findById(userId) || !(await Candidate.findById(candidateId)))) {
+            }
+            if (!(await User.findById(userId) || !(await Candidate.findById(candidateId)))) {
                 return ctx.send(400);
             }
 
@@ -108,11 +113,61 @@ export default class VotingController {
                 votingId,
                 userId,
                 candidateId,
+                ...voteParams,
             });
 
             return (vote) ? ctx.send(200) : ctx.send(400);
         } catch (error) {
             return ctx.send(500, error);
+        }
+    }
+
+    static getVoteValue(coefficients, coeffValues) {
+        return coefficients.reduce((prevVoteVal, curCoefficient) => {
+            const valueObj = coeffValues.find(val => val._id === curCoefficient._id);
+            return (valueObj)
+                ? prevVoteVal + (valueObj.value * (curCoefficient.cost / 100))
+                : prevVoteVal;
+        }, 0);
+    }
+
+    static async createVotingResults(votingId) {
+        const { coefficients } = await Voting.findById(votingId);
+
+        const candidates = await Candidate.find({
+            votingId,
+        });
+
+        const candidateResults = await Promise.all(candidates.map(async (candidate) => {
+            const votes = await Vote.find({
+                votingId,
+                candidateId: candidate._id,
+            });
+
+            const votesCount = votes.length;
+
+            const votesValue = votes.reduce((prevVotesVal, curVote) => {
+                const { coefficientValues } = curVote;
+                const voteVal = VotingController.getVoteValue(coefficients, coefficientValues);
+                return prevVotesVal + voteVal;
+            }, 0);
+
+            return {
+                candidateId: candidate._id,
+                votesCount,
+                votesValue,
+            };
+        }));
+
+        try {
+            const votingResult = await VotingResult.create({
+                _id: new mongoose.Types.ObjectId(),
+                votingId,
+                results: candidateResults,
+            });
+            return votingResult;
+        } catch (error) {
+            return null;
         }
     }
 

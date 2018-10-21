@@ -20,6 +20,12 @@ const VoteSchema = Schema({
         type: Schema.Types.Date,
         default: Date.now(),
     },
+    coefficientValues: [{
+        _id: Schema.Types.Number,
+        value: {
+            type: Schema.Types.Number,
+        },
+    }],
 });
 
 const Vote = mongoose.model('Vote', VoteSchema);
