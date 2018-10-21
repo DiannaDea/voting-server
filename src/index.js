@@ -3,6 +3,8 @@ import config from 'config';
 
 import app from './app';
 
-http.createServer(app.callback()).listen(config.app.port);
+const port = config.app.port;
 
-console.log('Server running on port 5000');
+http.createServer(app.callback()).listen(port);
+
+console.log(`Server running on port ${port}`);
