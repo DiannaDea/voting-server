@@ -132,6 +132,10 @@ export default class VotingController {
     }
 
     static async createVotingResults(votingId) {
+        if (await VotingResult.findOne({ votingId })) {
+            return null;
+        }
+
         const { coefficients } = await Voting.findById(votingId);
 
         const candidates = await Candidate.find({
@@ -160,12 +164,11 @@ export default class VotingController {
         }));
 
         try {
-            const votingResult = await VotingResult.create({
+            return await VotingResult.create({
                 _id: new mongoose.Types.ObjectId(),
                 votingId,
                 results: candidateResults,
             });
-            return votingResult;
         } catch (error) {
             return null;
         }
