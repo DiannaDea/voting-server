@@ -49,4 +49,8 @@ Content-Type: application/json
   "coefficientValues": [{"_id": 1, "value": 78}, {"_id": 2, "value": 45}, {"_id": 3, "value": 98}]
 }
 
+### Get voting results
+
+GET http://localhost:5000/votings/5bcc764672eeb941e571ec1e/results
+
 ###

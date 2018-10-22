@@ -101,4 +101,15 @@ votingsRouter.route({
     handler: VotingController.vote,
 });
 
+votingsRouter.route({
+    method: 'get',
+    path: '/:votingId/results',
+    validate: {
+        params: {
+            votingId: Joi.string().required(),
+        },
+    },
+    handler: VotingController.getVotingResults,
+});
+
 export default votingsRouter;

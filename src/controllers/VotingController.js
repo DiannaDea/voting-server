@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import pick from 'lodash.pick';
 
 import Voting from '../models/Voting';
 import Candidate from '../models/Candidate';
@@ -171,6 +172,31 @@ export default class VotingController {
             });
         } catch (error) {
             return null;
+        }
+    }
+
+    static async getVotingResults(ctx) {
+        const { votingId } = ctx.params;
+        try {
+            const votingResults = await VotingResult.findOne({
+                votingId,
+            });
+
+            const candidateResults = await Promise.all(votingResults.results.map(async votingRes => ({
+                ...pick(votingRes, ['votesCount', 'votesValue']),
+                candidate: await Candidate.findById(votingRes.candidateId),
+            })));
+
+            const resultsWithCandidates = {
+                ...pick(votingResults, ['_id', 'votingId']),
+                results: candidateResults,
+            };
+
+            return (resultsWithCandidates)
+                ? ctx.send(200, resultsWithCandidates)
+                : ctx.send(204);
+        } catch (error) {
+            return ctx.send(500, error);
         }
     }
 
