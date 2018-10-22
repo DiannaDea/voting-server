@@ -182,6 +182,10 @@ export default class VotingController {
                 votingId,
             });
 
+            if (!votingResults) {
+                return ctx.send(204);
+            }
+
             const candidateResults = await Promise.all(votingResults.results.map(async votingRes => ({
                 ...pick(votingRes, ['votesCount', 'votesValue']),
                 candidate: await Candidate.findById(votingRes.candidateId),
