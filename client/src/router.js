@@ -1,6 +1,6 @@
 import React from 'react';
 import createHistory from 'history/createBrowserHistory';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 
 import Tacos from './components/Tacos';
 
@@ -11,20 +11,21 @@ const routes = [
     {
         path: '/',
         exact: true,
-        component: Tacos
+        component: Tacos,
     },
     {
         path: '/test',
-        component: TestRoute
+        component: TestRoute,
     }
 ];
 
 export default function router() {
     return (
-        <BrowserRouter history={history}>
+        <Router history={history}>
             <div>
-                {routes.map(route => (
+                {routes.map((route, index) => (
                     <Route
+                        key={index}
                         path={route.path}
                         exact={(route.exact)}
                         render={props => (
@@ -33,6 +34,6 @@ export default function router() {
                     />
                 ))}
             </div>
-        </BrowserRouter>
+        </Router>
     );
 }

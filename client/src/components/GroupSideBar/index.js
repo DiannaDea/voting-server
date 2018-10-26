@@ -3,7 +3,7 @@ import GroupSideBar from './components';
 import { getUserGroupsInit } from './utils/actions';
 
 const mapStateToProps = state => ({
-
+    groups: state.groups.data,
 });
 
 const mapDispatchToProps = dispatch => ({

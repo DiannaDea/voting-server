@@ -9,9 +9,9 @@ export const getUserGroupsInit = userId => ({
 
 export const getUserGroupsSuccess = userGroups => ({
     type: GET_USER_GROUPS_SUCCESS,
-    payload: {
-        userGroups,
-    },
+    payload: [
+        ...userGroups,
+    ],
 });
 
 export const getUserGroupsError = error => ({

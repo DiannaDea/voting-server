@@ -6,13 +6,12 @@ import { getUserGroupsSuccess, getUserGroupsError } from '../../components/Group
 
 export default function* getUserGroups({ payload }) {
     try {
-        const res = yield call(axios, {
+        const groups = yield call(axios, {
             url: `${BASE_URL}/users/5bc8a8649c3d232278530a48/groups`,
             method: 'GET',
         });
 
-        const { amount } = res.data;
-        yield put(getUserGroupsSuccess(amount));
+        yield put(getUserGroupsSuccess(groups.data));
     } catch (error) {
         yield put(getUserGroupsError(error));
     }
