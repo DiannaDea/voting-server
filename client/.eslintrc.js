@@ -14,5 +14,6 @@ module.exports = {
                 'SwitchCase': 1
             }
         ],
+        'no-underscore-dangle': ['error', { 'allow': ['_id'] }]
     }
 };

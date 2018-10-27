@@ -10,10 +10,10 @@ const Header = () => <h1>Header</h1>;
 
 const App = ({ classes }) => (
     <Grid container spacing={0}>
-        <Grid item md={1} className={classes.sideBar}>
+        <Grid item md={1} className={classes.sideBar} style={{ backgroundColor: 'gray' }}>
             <GroupSideBar />
         </Grid>
-        <Grid item md={2} className={classes.sideBar}>
+        <Grid item md={2} className={classes.sideBar} style={{ backgroundColor: '#c1c1c1' }}>
             <NavSideBar />
         </Grid>
         <Grid item md={9} className={classes.sideBar}>
