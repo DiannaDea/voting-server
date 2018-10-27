@@ -7,15 +7,15 @@ import {
 } from './styled';
 
 class GroupSideBar extends Component {
+    changeCurrentGroup = (newCurGroupId) => {
+        const { changeCurrentGroup, } = this.props;
+        changeCurrentGroup(newCurGroupId);
+    };
+
     componentDidMount() {
         const { getUserGroups } = this.props;
         getUserGroups('1');
     }
-
-    changeCurrentGroup = (newCurGroupId) => {
-        const { changeCurrentGroup } = this.props;
-        changeCurrentGroup(newCurGroupId);
-    };
 
     render() {
         const { groups, curGroupId } = this.props;
