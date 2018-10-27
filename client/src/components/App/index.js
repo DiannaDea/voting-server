@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import GroupSideBar from '../GroupSideBar/index';
-import NavSideBar from '../NavSideBar';
+import NavSideBar from '../../components/NavSideBar';
 import router from '../../router';
 import styles from './styles';
 
