@@ -13,8 +13,26 @@ class NavSideBar extends Component {
     }
 
     render() {
+        const { votingsNew, votingsRecent } = this.props;
         return (
-            <h1>Nav Side bar</h1>
+            <React.Fragment>
+                <p>New votings</p>
+                <ul>
+                    {
+                        (votingsNew && votingsNew.length)
+                            ? votingsNew.map(({ topic }) => (<li>{topic}</li>))
+                            : null
+                    }
+                </ul>
+                <p>Recent votings</p>
+                <ul>
+                    {
+                        (votingsRecent && votingsRecent.length)
+                            ? votingsRecent.map(({ topic }) => (<li>{topic}</li>))
+                            : null
+                    }
+                </ul>
+            </React.Fragment>
         );
     }
 }
