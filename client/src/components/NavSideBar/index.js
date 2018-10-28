@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
     userId: '5bc8a8599c3d232278530a47',
     votingsNew: state.votings.data.new,
     votingsRecent: state.votings.data.recent,
+    groups: state.groups.data.all || [],
 });
 
 const mapDispatchToProps = dispatch => ({

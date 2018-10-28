@@ -13,10 +13,10 @@ const App = ({ classes }) => (
         <Grid item md={1} className={classes.sideBar} style={{ backgroundColor: 'gray' }}>
             <GroupSideBar />
         </Grid>
-        <Grid item md={2} className={classes.sideBar} style={{ backgroundColor: '#c1c1c1' }}>
+        <Grid item md={3} className={classes.sideBar} style={{ backgroundColor: '#c1c1c1' }}>
             <NavSideBar />
         </Grid>
-        <Grid item md={9} className={classes.sideBar}>
+        <Grid item md={8} className={classes.sideBar}>
             <Grid container direction='column'>
                 <Grid item md={12} className={classes.header}>
                     <Header />
