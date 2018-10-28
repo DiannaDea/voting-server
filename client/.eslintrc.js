@@ -1,19 +1,36 @@
 module.exports = {
     extends: 'airbnb',
+    parser: 'babel-eslint',
     rules: {
-        'max-len': ['error', {'code': 120}],
-        'react/jsx-indent': ['error', 4],
-        'react/jsx-indent-props': ['error', 4],
-        'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
+        'react/jsx-indent': ['error', 2],
+        'react/jsx-indent-props': ['error', 2],
         'react/prop-types': 0,
-        'jsx-quotes': ["error", "prefer-single"],
-        'indent': [
-            'error',
-            4,
-            {
-                'SwitchCase': 1
-            }
-        ],
-        'no-underscore-dangle': ['error', { 'allow': ['_id'] }]
+        'no-underscore-dangle': ['error', { 'allow': ['_id'] }],
+        "jsx-quotes": ["error", "prefer-single"],
+        "space-before-blocks": 1,
+        "keyword-spacing": 1,
+        "no-console": 1,
+        "indent": [2, 2, {"SwitchCase": 1}],
+        "react/jsx-pascal-case": 1,
+        "prefer-destructuring": 0,
+        "global-require": 0,
+        "max-len": 0,
+        "linebreak-style": 0,
+        "arrow-body-style": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-dynamic-require": 0,
+        "react/jsx-filename-extension": 0,
+        "react/no-array-index-key": 0,
+        "react/forbid-prop-types": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-noninteractive-element-to-interactive-role": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+    },
+    "env": {
+        "browser": true
     }
 };

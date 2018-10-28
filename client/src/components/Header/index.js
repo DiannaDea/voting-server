@@ -24,27 +24,27 @@ const ButtonCreateVoting = styled(Button)`
 `;
 
 const Header = () => (
-    <AppBar position='static'>
-        <HeaderContainer>
-            <Typography variant='h6' color='inherit' noWrap>
+  <AppBar position='static'>
+    <HeaderContainer>
+      <Typography variant='h6' color='inherit' noWrap>
                VoteUp
-            </Typography>
-            <ControllerPanel>
-                <ButtonCreateVoting variant='contained'>
+      </Typography>
+      <ControllerPanel>
+        <ButtonCreateVoting variant='contained'>
                     Create voting
-                </ButtonCreateVoting>
-                <IconButton color='inherit'>
-                    <ActivityIcon />
-                </IconButton>
-                <IconButton color='inherit'>
-                    <AccountCircle />
-                </IconButton>
-                <IconButton color='inherit'>
-                    <Logout />
-                </IconButton>
-            </ControllerPanel>
-        </HeaderContainer>
-    </AppBar>
+        </ButtonCreateVoting>
+        <IconButton color='inherit'>
+          <ActivityIcon />
+        </IconButton>
+        <IconButton color='inherit'>
+          <AccountCircle />
+        </IconButton>
+        <IconButton color='inherit'>
+          <Logout />
+        </IconButton>
+      </ControllerPanel>
+    </HeaderContainer>
+  </AppBar>
 );
 
 export default Header;
