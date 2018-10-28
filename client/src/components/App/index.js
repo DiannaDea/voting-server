@@ -1,12 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import GroupSideBar from '../GroupSideBar/index';
-import NavSideBar from '../../components/NavSideBar';
+import GroupSideBar from '../GroupSideBar';
+import NavSideBar from '../NavSideBar';
+import Header from '../Header';
 import router from '../../router';
 import styles from './styles';
-
-const Header = () => <h1>Header</h1>;
 
 const App = ({ classes }) => (
     <Grid container spacing={0}>
@@ -17,7 +16,7 @@ const App = ({ classes }) => (
             <NavSideBar />
         </Grid>
         <Grid item md={8} className={classes.sideBar}>
-            <Grid container direction='column'>
+            <Grid container direction='column' style={{width: '100%'}}>
                 <Grid item md={12} className={classes.header}>
                     <Header />
                 </Grid>
