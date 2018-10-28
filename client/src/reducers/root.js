@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 
-import groupsReducer from '../components/GroupSideBar/modules/reducer';
-import votingReducer from '../components/NavSideBar/modules/reducer';
+import groupsReducer from './groups';
+import votingReducer from './votings';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
