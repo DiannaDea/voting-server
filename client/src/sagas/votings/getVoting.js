@@ -20,8 +20,6 @@ export default function* getOneVoting({ payload }) {
       ? null
       : voting.data;
 
-    console.log('HERE DIANA', votingRes);
-
     yield put(getOneVotingSuccess(votingRes));
   } catch (error) {
     yield put(getOneVotingError(error));

@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import dateFormat from 'dateformat';
+import CandidatesContainer from './CandidatesContainer';
+import CoefficientsContainer from './CoefficientsContainer';
 
 const VotingInput = styled(TextField)`
    margin: 20px 15px !important;
@@ -20,8 +22,17 @@ class VotingItem extends Component {
     getOneVoting({ id });
   }
 
+  componentDidUpdate(prevProps) {
+    const { voting, getVotingCandidates } = this.props;
+    if (voting && prevProps.voting !== voting) {
+      getVotingCandidates({
+        votingId: voting._id,
+      });
+    }
+  }
+
   render() {
-    const { voting } = this.props;
+    const { voting, candidates } = this.props;
 
     const votingForm = (voting) ? (
       <Fragment>
@@ -43,6 +54,7 @@ class VotingItem extends Component {
           label='Voters percent'
           value={`${voting.votersPercent} %`}
         />
+        <CandidatesContainer candidates={candidates} />
       </Fragment>
     ) : null;
 

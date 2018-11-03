@@ -11,7 +11,10 @@ export default {
       new: [],
       recent: [],
       all: [],
-      lastVoting: null,
+      lastVoting: {
+        data: null,
+        candidates: [],
+      },
     },
     error: null,
   },
