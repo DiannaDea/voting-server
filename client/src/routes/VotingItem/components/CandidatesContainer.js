@@ -5,10 +5,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import Divider from '@material-ui/core/Divider';
+import styled from 'styled-components';
+
+const CandidatesList = styled(List)`
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  width: 45%;
+`;
 
 const CandidatesContainer = ({ candidates }) => {
   return (
-    <List>
+    <CandidatesList>
       {
         (candidates && candidates.length)
           ? candidates.map((candidate, index) => {
@@ -29,7 +35,7 @@ const CandidatesContainer = ({ candidates }) => {
           })
           : []
       }
-    </List>
+    </CandidatesList>
   );
 };
 

@@ -14,6 +14,12 @@ const VotingInputGroup = styled.div`
   width: 100%;
 `;
 
+const InformationGroup = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+`;
+
 class VotingItem extends Component {
   componentDidMount() {
     const { match, getOneVoting } = this.props;
@@ -23,7 +29,14 @@ class VotingItem extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { voting, getVotingCandidates } = this.props;
+    const {
+      match, voting, getVotingCandidates, getOneVoting,
+    } = this.props;
+    const { id } = match.params;
+
+    if (id && id !== prevProps.match.params.id) {
+      getOneVoting({ id });
+    }
     if (voting && prevProps.voting !== voting) {
       getVotingCandidates({
         votingId: voting._id,
@@ -36,10 +49,12 @@ class VotingItem extends Component {
 
     const votingForm = (voting) ? (
       <Fragment>
+          <VotingInputGroup>
         <VotingInput
           label='Topic'
           value={voting.topic}
         />
+          </VotingInputGroup>
         <VotingInputGroup>
           <VotingInput
             label='Date start'
@@ -50,11 +65,16 @@ class VotingItem extends Component {
             value={dateFormat(voting.dateEnd, 'mmmm dS, yyyy, h:MM:ss')}
           />
         </VotingInputGroup>
+          <VotingInputGroup>
         <VotingInput
           label='Voters percent'
           value={`${voting.votersPercent} %`}
         />
-        <CandidatesContainer candidates={candidates} />
+          </VotingInputGroup>
+        <InformationGroup>
+          <CandidatesContainer candidates={candidates} />
+          <CandidatesContainer candidates={candidates} />
+        </InformationGroup>
       </Fragment>
     ) : null;
 
