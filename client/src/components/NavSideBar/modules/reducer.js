@@ -20,6 +20,7 @@ export default (state, action) => ({
     ...state,
     isFetching: false,
     fetchData: {
+      ...state.fetchData,
       new: action.payload,
       recent: state.fetchData.recent || [],
     },
@@ -29,8 +30,10 @@ export default (state, action) => ({
     ...state,
     isFetching: false,
     fetchData: {
+      ...state.fetchData,
       new: null,
       recent: state.fetchData.recent || [],
+
     },
     error: action.payload,
   }),
@@ -38,6 +41,7 @@ export default (state, action) => ({
     ...state,
     isFetching: false,
     fetchData: {
+      ...state.fetchData,
       recent: action.payload,
       new: state.fetchData.new || [],
     },
@@ -47,6 +51,7 @@ export default (state, action) => ({
     ...state,
     isFetching: false,
     fetchData: {
+      ...state.fetchData,
       recent: null,
       new: state.fetchData.new || [],
     },

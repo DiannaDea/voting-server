@@ -3,11 +3,12 @@ import VotingItem from '../components';
 import { getOneVotingInit } from '../modules/actions';
 
 const mapStateToProps = state => ({
-
+  userName: 'Diana Baburina',
+  voting: state.votings.fetchData.lastVoting,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getOneVotingInit: payload => dispatch(getOneVotingInit(payload)),
+  getOneVoting: payload => dispatch(getOneVotingInit(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VotingItem);

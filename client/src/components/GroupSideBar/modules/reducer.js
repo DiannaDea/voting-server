@@ -22,7 +22,10 @@ export default (state, action) => ({
   [GET_USER_GROUPS_ERROR]: () => ({
     ...state,
     isFetching: false,
-    fetchData: null,
+    fetchData: {
+      all: [],
+      curGroupId: null,
+    },
     error: action.payload,
   }),
   [CHANGE_CURRENT_GROUP]: () => ({

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import NavSideBar from '../components';
 import { getNewVotingsInit, getRecentVotingsInit } from '../modules/actions';
 
@@ -15,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
   getRecentVotings: payload => dispatch(getRecentVotingsInit(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavSideBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavSideBar));

@@ -1,11 +1,8 @@
 import React from 'react';
-import createHistory from 'history/createBrowserHistory';
-import { Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Tacos from './routes/Tacos';
-
-const history = createHistory();
-const TestRoute = () => <h1>Test</h1>;
+import VotingItem from './routes/VotingItem';
 
 const routes = [
   {
@@ -14,26 +11,24 @@ const routes = [
     component: Tacos,
   },
   {
-    path: '/test',
-    component: TestRoute,
+    path: '/votings/:id',
+    component: VotingItem,
   },
 ];
 
 export default function router() {
   return (
-    <Router history={history}>
-      <div>
-        {routes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            exact={(route.exact)}
-            render={props => (
-              <route.component {...props} routes={route.routes} />
-            )}
-          />
-        ))}
-      </div>
-    </Router>
+    <div>
+      {routes.map((route, index) => (
+        <Route
+          key={index}
+          path={route.path}
+          exact={(route.exact)}
+          render={props => (
+            <route.component {...props} routes={route.routes} />
+          )}
+        />
+      ))}
+    </div>
   );
 }

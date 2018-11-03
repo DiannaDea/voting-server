@@ -11,6 +11,7 @@ export default {
       new: [],
       recent: [],
       all: [],
+      lastVoting: null,
     },
     error: null,
   },

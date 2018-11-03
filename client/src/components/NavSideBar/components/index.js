@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -62,9 +63,11 @@ class NavSideBar extends Component {
 
     getVotingsForRender = (votings) => {
       return (votings && votings.length)
-        ? votings.map(({ topic }) => (
-          <ListItem button>
-            <SubItemText inset primary={`# ${topic}`} />
+        ? votings.map(({ topic, _id }) => (
+          <ListItem button key={_id}>
+            <Link to={`/votings/${_id}`}>
+              <SubItemText inset primary={`# ${topic}`} />
+            </Link>
           </ListItem>))
         : null;
     };
