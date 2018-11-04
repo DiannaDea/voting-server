@@ -50,8 +50,8 @@ class CandidatesContainer extends Component {
               ? candidates.map((candidate, index) => {
                 const { name, description, _id } = candidate;
                 return (
-                  <Fragment>
-                    <ListItem key={_id}>
+                  <Fragment key={_id}>
+                    <ListItem>
                       <Avatar>
                         <ImageIcon />
                       </Avatar>

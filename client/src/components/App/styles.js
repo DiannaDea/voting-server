@@ -1,6 +1,6 @@
 export default () => ({
   sideBar: {
-    height: '100vh',
+    height: '120vh',
   },
   header: {
     height: '5%',

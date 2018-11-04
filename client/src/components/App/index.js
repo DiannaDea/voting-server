@@ -3,11 +3,16 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import { Router } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
+import styled from 'styled-components';
 import GroupSideBar from '../GroupSideBar';
 import NavSideBar from '../NavSideBar';
 import Header from '../Header';
 import router from '../../router';
 import styles from './styles';
+
+const RootContainer = styled.div`
+  padding: 20px;
+`;
 
 const history = createHistory();
 
@@ -26,7 +31,9 @@ const App = ({ classes }) => (
             <Header />
           </Grid>
           <Grid item md={12} className={classes.rootContainer}>
-            {router()}
+            <RootContainer>
+              {router()}
+            </RootContainer>
           </Grid>
         </Grid>
       </Grid>

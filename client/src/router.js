@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 
 import Tacos from './routes/Tacos';
@@ -18,7 +18,7 @@ const routes = [
 
 export default function router() {
   return (
-    <div>
+    <Fragment>
       {routes.map((route, index) => (
         <Route
           key={index}
@@ -29,6 +29,6 @@ export default function router() {
           )}
         />
       ))}
-    </div>
+    </Fragment>
   );
 }

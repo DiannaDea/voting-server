@@ -20,12 +20,21 @@ const InformationGroup = styled.div`
     justify-content: space-around;
 `;
 
-const VotingAuthorContainer = styled.div`
-    width: 25%;
+const VotingBadge = styled.div`
+    width: ${props => (props.isStatus ? '15%' : '25%')};
     background-color: #bdbdbd;
     text-align: center;
     padding: 3px;
     border-radius: 50px;
+`;
+
+const VotingInfoGroup = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const VotingRow = styled.div`
+    margin: 20px 0;
 `;
 
 class VotingItem extends Component {
@@ -52,39 +61,58 @@ class VotingItem extends Component {
     }
   }
 
+  blockChangeInputs = (event) => {
+      event.preventDefault();
+  }
+
   render() {
     const { voting, candidates, userName } = this.props;
 
     const votingForm = (voting) ? (
       <Fragment>
-        <VotingAuthorContainer>
-          {userName}
-        </VotingAuthorContainer>
-        <VotingInputGroup>
-          <VotingInput
-            label='Topic'
-            value={voting.topic}
-          />
-        </VotingInputGroup>
-        <VotingInputGroup>
-          <VotingInput
-            label='Date start'
-            value={dateFormat(voting.dateStart, 'mmmm dS, yyyy, h:MM:ss')}
-          />
-          <VotingInput
-            label='Date end'
-            value={dateFormat(voting.dateEnd, 'mmmm dS, yyyy, h:MM:ss')}
-          />
-        </VotingInputGroup>
-        <VotingInputGroup>
-          <VotingInput
-            label='Voters percent'
-            value={`${voting.votersPercent} %`}
-          />
-        </VotingInputGroup>
+        <VotingInfoGroup>
+          <VotingBadge>{userName}</VotingBadge>
+          <VotingBadge isStatus>{voting.status}</VotingBadge>
+        </VotingInfoGroup>
+        <VotingRow>
+          <VotingInputGroup>
+            <VotingInput
+              label='Topic'
+              value={voting.topic}
+              onChange={this.blockChangeInputs}
+            />
+          </VotingInputGroup>
+          <VotingInputGroup>
+            <VotingInput
+              label='Date start'
+              value={dateFormat(voting.dateStart, 'mmmm dS, yyyy, h:MM:ss')}
+              onChange={this.blockChangeInputs}
+            />
+            <VotingInput
+              label='Date end'
+              value={dateFormat(voting.dateEnd, 'mmmm dS, yyyy, h:MM:ss')}
+              onChange={this.blockChangeInputs}
+            />
+          </VotingInputGroup>
+          <VotingInputGroup>
+            <VotingInput
+              label='Voters percent'
+              value={`${voting.votersPercent} %`}
+              onChange={this.blockChangeInputs}
+            />
+          </VotingInputGroup>
+        </VotingRow>
         <InformationGroup>
-          <CandidatesContainer candidates={candidates} />
-          <CoefficientsContainer coefficients={voting.coefficients} />
+          {
+            (candidates && candidates.length) ? (
+              <CandidatesContainer candidates={candidates} />
+            ) : null
+          }
+          {
+            (voting.coefficients && voting.coefficients.length) ? (
+              <CoefficientsContainer coefficients={voting.coefficients} />
+            ) : null
+          }
         </InformationGroup>
       </Fragment>
     ) : null;

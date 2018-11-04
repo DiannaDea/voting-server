@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -27,7 +28,7 @@ const Header = () => (
   <AppBar position='static'>
     <HeaderContainer>
       <Typography variant='h6' color='inherit' noWrap>
-               VoteUp
+        <Link to='/'>VoteUp</Link>
       </Typography>
       <ControllerPanel>
         <ButtonCreateVoting variant='contained'>

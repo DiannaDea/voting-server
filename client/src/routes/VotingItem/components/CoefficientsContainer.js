@@ -17,10 +17,13 @@ const CoefficientsContainer = ({ coefficients }) => {
       {
         (coefficients && coefficients.length)
           ? coefficients.map((coefficient, index) => {
-            const { name, question, cost, _id } = coefficient;
+            const {
+              name, question, cost, _id,
+            } = coefficient;
+
             return (
-              <Fragment>
-                <ListItem key={_id}>
+              <Fragment key={_id}>
+                <ListItem>
                   <ListItemText primary={name} secondary={question} />
                   <Avatar>
                     {cost}
