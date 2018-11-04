@@ -20,6 +20,14 @@ const InformationGroup = styled.div`
     justify-content: space-around;
 `;
 
+const VotingAuthorContainer = styled.div`
+    width: 25%;
+    background-color: #bdbdbd;
+    text-align: center;
+    padding: 3px;
+    border-radius: 50px;
+`;
+
 class VotingItem extends Component {
   componentDidMount() {
     const { match, getOneVoting } = this.props;
@@ -45,16 +53,19 @@ class VotingItem extends Component {
   }
 
   render() {
-    const { voting, candidates } = this.props;
+    const { voting, candidates, userName } = this.props;
 
     const votingForm = (voting) ? (
       <Fragment>
-          <VotingInputGroup>
-        <VotingInput
-          label='Topic'
-          value={voting.topic}
-        />
-          </VotingInputGroup>
+        <VotingAuthorContainer>
+          {userName}
+        </VotingAuthorContainer>
+        <VotingInputGroup>
+          <VotingInput
+            label='Topic'
+            value={voting.topic}
+          />
+        </VotingInputGroup>
         <VotingInputGroup>
           <VotingInput
             label='Date start'
@@ -65,15 +76,15 @@ class VotingItem extends Component {
             value={dateFormat(voting.dateEnd, 'mmmm dS, yyyy, h:MM:ss')}
           />
         </VotingInputGroup>
-          <VotingInputGroup>
-        <VotingInput
-          label='Voters percent'
-          value={`${voting.votersPercent} %`}
-        />
-          </VotingInputGroup>
+        <VotingInputGroup>
+          <VotingInput
+            label='Voters percent'
+            value={`${voting.votersPercent} %`}
+          />
+        </VotingInputGroup>
         <InformationGroup>
           <CandidatesContainer candidates={candidates} />
-          <CandidatesContainer candidates={candidates} />
+          <CoefficientsContainer coefficients={voting.coefficients} />
         </InformationGroup>
       </Fragment>
     ) : null;
