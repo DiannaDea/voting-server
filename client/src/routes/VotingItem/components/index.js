@@ -62,8 +62,8 @@ class VotingItem extends Component {
   }
 
   blockChangeInputs = (event) => {
-      event.preventDefault();
-  }
+    event.preventDefault();
+  };
 
   render() {
     const { voting, candidates, userName } = this.props;

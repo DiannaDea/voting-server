@@ -3,12 +3,17 @@ import { Route } from 'react-router-dom';
 
 import Tacos from './routes/Tacos';
 import VotingItem from './routes/VotingItem';
+import VotingForm from './routes/VotingForm';
 
 const routes = [
   {
     path: '/',
     exact: true,
     component: Tacos,
+  },
+  {
+    path: '/votings/create',
+    component: VotingForm,
   },
   {
     path: '/votings/:id',

@@ -32,7 +32,7 @@ const Header = () => (
       </Typography>
       <ControllerPanel>
         <ButtonCreateVoting variant='contained'>
-                    Create voting
+          <Link to='/votings/create'>Create voting</Link>
         </ButtonCreateVoting>
         <IconButton color='inherit'>
           <ActivityIcon />
