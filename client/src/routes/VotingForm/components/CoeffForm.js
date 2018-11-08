@@ -1,7 +1,6 @@
 import React, {Fragment, Component} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import styled from 'styled-components';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -66,7 +65,10 @@ class CoeffForm extends Component {
                 <Table>
                 <TableBody>{ coeffForms }</TableBody>
             </Table>
-                <Button onClick={this.addCoefficientForm}>Add coefficcient</Button>
+                <Button 
+                    variant="contained"
+                    color="primary" 
+                    onClick={this.addCoefficientForm}>Add coefficcient</Button>
             </Fragment>
         )
     }
