@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -6,6 +6,9 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import TopicForm from './TopicForm';
+import CoeffForm from './CoeffForm';
+import CandidatesForm from './CandidatesForm';
 
 const styles = theme => ({
   root: {
@@ -24,24 +27,39 @@ function getSteps() {
   return ['Choose voting topic', 'Set coefficients', 'Add candidates'];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return 'Select campaign settings...';
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
 
 class VotingForm extends React.Component {
     state = {
       activeStep: 0,
       skipped: new Set(),
+      formData: {
+        topic: '',
+        dateStart: '',
+        dateEnd: '',
+        votersPercent: '',
+      }
     };
+
+    getStepContent = (step) => {
+      switch (step) {
+        case 0:
+          return <TopicForm onChange={(event) => this.handleInputChange(event, 'topic')}/>;
+        case 1:
+          return <CoeffForm/>;
+        case 2:
+          return <CandidatesForm/>;
+        default: 
+          return 'Unknown step';
+      }
+    }
+
+    handleInputChange = (event, inputName) => {
+      console.log('=============')
+      event.preventDefault();
+      this.setState({
+        [inputName]: event.target.value,
+      })
+    }
 
     isStepOptional = (step) => {
       return step === 1;
@@ -130,7 +148,7 @@ class VotingForm extends React.Component {
               </div>
             ) : (
               <div>
-                <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                <Fragment>{this.getStepContent(activeStep)}</Fragment>
                 <div>
                   <Button
                     disabled={activeStep === 0}

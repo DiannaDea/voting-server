@@ -5,6 +5,7 @@ import Tacos from './routes/Tacos';
 import VotingItem from './routes/VotingItem';
 import VotingForm from './routes/VotingForm';
 
+//FIXME: refactor create voting route url
 const routes = [
   {
     path: '/',
@@ -12,7 +13,7 @@ const routes = [
     component: Tacos,
   },
   {
-    path: '/votings/create',
+    path: '/create/votings',
     component: VotingForm,
   },
   {
