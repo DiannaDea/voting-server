@@ -6,7 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TopicForm from './TopicForm';
-import CoeffForm from './CoeffForm';
+import CoeffForm from './WeightsForm';
 import CandidatesForm from './CandidatesForm';
 
 const styles = theme => ({
@@ -30,25 +30,36 @@ function getSteps() {
 class VotingForm extends React.Component {
     state = {
       activeStep: 0,
-      formData: {
+      voting: {
         topic: '',
-        dateStart: '',
-        dateEnd: '',
+        startDate: '',
+        endDate: '',
         votersPercent: '',
-      }
+      },
+      weights: {
+        name: '',
+        question: '',
+        cost: 0,
+      },
+      candidates: {
+
+      },
     };
 
     stepToComponentMap = {
-      0: <TopicForm onChange={(event) => this.handleInputChange(event, 'topic')}/>,
-      1: <CoeffForm/>,
-      2: <CandidatesForm/>,
+      0: <TopicForm onChange={this.handleInputChange('formData')} />,
+      1: <CoeffForm onChange={this.handleInputChange('weights')} />,
+      2: <CandidatesForm onChange={this.handleInputChange('candidates')} />,
     }
 
-    handleInputChange = (event, inputName) => {
+    handleInputChange = namespace => inputName => (event) => {
       event.preventDefault();
-      this.setState({
-        [inputName]: event.target.value,
-      })
+      this.setState(state => ({
+        [namespace]: {
+          ...state[namespace],
+          [inputName]: event.target.value,
+        },
+      }));
     }
 
     handleNext = () => {
@@ -73,9 +84,9 @@ class VotingForm extends React.Component {
         <div className={classes.root}>
           <Stepper activeStep={activeStep}>
             {steps.map(label => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
             ))}
           </Stepper>
           <div>
@@ -85,7 +96,7 @@ class VotingForm extends React.Component {
               </Typography>
             ) : (
               <div>
-                {stepToComponentMap[activeStep] || 'Unknown step'}
+                {this.stepToComponentMap[activeStep] || 'Unknown step'}
                 <div>
                   <Button
                     disabled={activeStep === 0}
