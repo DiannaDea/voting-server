@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -31,7 +30,6 @@ function getSteps() {
 class VotingForm extends React.Component {
     state = {
       activeStep: 0,
-      skipped: new Set(),
       formData: {
         topic: '',
         dateStart: '',
@@ -40,41 +38,23 @@ class VotingForm extends React.Component {
       }
     };
 
-    getStepContent = (step) => {
-      switch (step) {
-        case 0:
-          return <TopicForm onChange={(event) => this.handleInputChange(event, 'topic')}/>;
-        case 1:
-          return <CoeffForm/>;
-        case 2:
-          return <CandidatesForm/>;
-        default: 
-          return 'Unknown step';
-      }
+    stepToComponentMap = {
+      0: <TopicForm onChange={(event) => this.handleInputChange(event, 'topic')}/>,
+      1: <CoeffForm/>,
+      2: <CandidatesForm/>,
     }
 
     handleInputChange = (event, inputName) => {
-      console.log('=============')
       event.preventDefault();
       this.setState({
         [inputName]: event.target.value,
       })
     }
 
-    isStepOptional = (step) => {
-      return step === 1;
-    };
-
     handleNext = () => {
       const { activeStep } = this.state;
-      let { skipped } = this.state;
-      if (this.isStepSkipped(activeStep)) {
-        skipped = new Set(skipped.values());
-        skipped.delete(activeStep);
-      }
       this.setState({
         activeStep: activeStep + 1,
-        skipped,
       });
     };
 
@@ -84,34 +64,6 @@ class VotingForm extends React.Component {
       }));
     };
 
-    handleSkip = () => {
-      const { activeStep } = this.state;
-      if (!this.isStepOptional(activeStep)) {
-        // You probably want to guard against something like this,
-        // it should never occur unless someone's actively trying to break something.
-        throw new Error("You can't skip a step that isn't optional.");
-      }
-
-      this.setState((state) => {
-        const skipped = new Set(state.skipped.values());
-        skipped.add(activeStep);
-        return {
-          activeStep: state.activeStep + 1,
-          skipped,
-        };
-      });
-    };
-
-    handleReset = () => {
-      this.setState({
-        activeStep: 0,
-      });
-    };
-
-    isStepSkipped(step) {
-      return this.state.skipped.has(step);
-    }
-
     render() {
       const { classes } = this.props;
       const steps = getSteps();
@@ -120,42 +72,27 @@ class VotingForm extends React.Component {
       return (
         <div className={classes.root}>
           <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => {
-              const props = {};
-              const labelProps = {};
-              if (this.isStepOptional(index)) {
-                labelProps.optional = <Typography variant='caption'>Optional</Typography>;
-              }
-              if (this.isStepSkipped(index)) {
-                props.completed = false;
-              }
-              return (
-                <Step key={label} {...props}>
-                  <StepLabel {...labelProps}>{label}</StepLabel>
+            {steps.map(label => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
                 </Step>
-              );
-            })}
+            ))}
           </Stepper>
           <div>
             {activeStep === steps.length ? (
-              <div>
-                <Typography className={classes.instructions}>
-                                All steps completed - you&quot;re finished
-                </Typography>
-                <Button onClick={this.handleReset} className={classes.button}>
-                                Reset
-                </Button>
-              </div>
+              <Typography className={classes.instructions}>
+                All steps completed - you&quot;re finished
+              </Typography>
             ) : (
               <div>
-                <Fragment>{this.getStepContent(activeStep)}</Fragment>
+                {stepToComponentMap[activeStep] || 'Unknown step'}
                 <div>
                   <Button
                     disabled={activeStep === 0}
                     onClick={this.handleBack}
                     className={classes.button}
                   >
-                                    Back
+                    Back
                   </Button>
                   <Button
                     variant='contained'
