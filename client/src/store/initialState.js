@@ -18,4 +18,11 @@ export default {
     },
     error: null,
   },
+  user: {
+    fetchData: {
+      token: null,
+      personalInfo: null,
+    },
+    error: null,
+  },
 };

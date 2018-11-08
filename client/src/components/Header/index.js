@@ -24,6 +24,8 @@ const ButtonCreateVoting = styled(Button)`
     margin-right: 25px !important;
 `;
 
+const cleanToken = () => localStorage.removeItem('token');
+
 const Header = () => (
   <AppBar position='static'>
     <HeaderContainer>
@@ -32,7 +34,7 @@ const Header = () => (
       </Typography>
       <ControllerPanel>
         <ButtonCreateVoting variant='contained'>
-          <Link to='/create/votings'>Create voting</Link>
+          <Link to='/app/create/votings'>Create voting</Link>
         </ButtonCreateVoting>
         <IconButton color='inherit'>
           <ActivityIcon />
@@ -40,7 +42,10 @@ const Header = () => (
         <IconButton color='inherit'>
           <AccountCircle />
         </IconButton>
-        <IconButton color='inherit'>
+        <IconButton
+          color='inherit'
+          onClick={cleanToken}
+        >
           <Logout />
         </IconButton>
       </ControllerPanel>
