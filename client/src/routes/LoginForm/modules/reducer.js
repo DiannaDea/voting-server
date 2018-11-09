@@ -2,6 +2,7 @@ import {
   SIGN_IN_INIT,
   SIGN_IN_SUCCESS,
   SIGN_IN_ERROR,
+  SIGN_OUT,
 } from './types';
 
 export default (state, action) => ({
@@ -29,5 +30,14 @@ export default (state, action) => ({
       },
     },
     error: action.payload,
+  }),
+  [SIGN_OUT]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      token: null,
+    },
+    error: state.error,
   }),
 });

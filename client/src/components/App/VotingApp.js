@@ -1,21 +1,19 @@
 import React, { Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Redirect } from 'react-router-dom';
-import styled from 'styled-components';
-import { withStyles } from '@material-ui/core/styles';
+import connect from 'react-redux/es/connect/connect';
 import GroupSideBar from '../GroupSideBar';
 import NavSideBar from '../NavSideBar';
 import Header from '../Header';
-
 import { router, bodyRoutes } from '../../router';
+import {
+  SideBar,
+  HeaderContainer,
+  RootBody,
+  RootContainer,
+} from './styled';
 
-import styles from './styles';
-
-const RootContainer = styled.div`
-  padding: 20px;
-`;
-
-const VotingApp = ({ classes }) => {
+const VotingApp = () => {
   return (
     <Fragment>
       {
@@ -23,24 +21,24 @@ const VotingApp = ({ classes }) => {
           ? (<Redirect to='/login' />)
           : (
             <Grid container spacing={0}>
-              <Grid item md={1} className={classes.sideBar} style={{ backgroundColor: 'gray' }}>
+              <SideBar item md={1} style={{ backgroundColor: 'gray' }}>
                 <GroupSideBar />
-              </Grid>
-              <Grid item md={3} className={classes.sideBar} style={{ backgroundColor: '#c1c1c1' }}>
+              </SideBar>
+              <SideBar item md={3} style={{ backgroundColor: '#c1c1c1' }}>
                 <NavSideBar />
-              </Grid>
-              <Grid item md={8} className={classes.sideBar}>
+              </SideBar>
+              <SideBar item md={8}>
                 <Grid container direction='column' style={{ width: '100%' }}>
-                  <Grid item md={12} className={classes.header}>
+                  <HeaderContainer item md={12}>
                     <Header />
-                  </Grid>
-                  <Grid item md={12} className={classes.rootContainer}>
+                  </HeaderContainer>
+                  <RootBody item md={12}>
                     <RootContainer>
                       {router(bodyRoutes)}
                     </RootContainer>
-                  </Grid>
+                  </RootBody>
                 </Grid>
-              </Grid>
+              </SideBar>
             </Grid>
           )
       }
@@ -48,4 +46,8 @@ const VotingApp = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(VotingApp);
+const mapStateToProps = state => ({
+  token: state.user.fetchData.token,
+});
+
+export default connect(mapStateToProps, () => ({}))(VotingApp);

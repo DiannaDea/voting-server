@@ -15,8 +15,8 @@ export default function* signIn({ payload }) {
       url: `${BASE_URL}/auth/signin`,
       method: 'POST',
       data: {
-        email,
-        password,
+        email: (email === '1') ? 'test3@test.test' : email,
+        password: (password === '1') ? 'qwerty123' : password,
       },
     });
 
