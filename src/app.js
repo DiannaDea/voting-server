@@ -29,8 +29,8 @@ votingCron.endVoting();
 
 routes.forEach(route => app.use(route));
 
-app.use('/*', async (ctx) => {
-    await send(ctx, path.resolve(__dirname, '../client/build/index.html'));
+app.use(async (ctx) => {
+    await send(ctx, 'index.html', { root: path.resolve(__dirname, '../client/build') });
 });
 
 export default app;
