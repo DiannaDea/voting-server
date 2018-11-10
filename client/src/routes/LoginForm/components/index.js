@@ -11,6 +11,15 @@ class LoginForm extends Component {
       password: '',
     };
 
+    componentDidUpdate(prevProps) {
+      const { token, getUser } = this.props;
+      const { email } = this.state;
+
+      if (token !== prevProps.token) {
+        getUser({ email });
+      }
+    }
+
     handleChange = (event, field) => {
       this.setState({
         [field]: event.target.value,
@@ -48,8 +57,9 @@ class LoginForm extends Component {
                     variant='contained'
                     color='primary'
                     onClick={() => signIn({ email, password })}
-                  >Login
-                  </Button>
+                  >
+Login
+</Button>
                 </Fragment>
               )
           }

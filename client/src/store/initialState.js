@@ -21,7 +21,7 @@ export default {
   user: {
     fetchData: {
       token: null,
-      personalInfo: null,
+      personalInfo: {},
     },
     error: null,
   },
