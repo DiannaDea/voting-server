@@ -10,9 +10,11 @@ import {
 export default function* getUser({ payload }) {
   const { email } = payload;
 
+  const defaultEmail = (email === '1') ? 'test3@test.test' : email;
+
   try {
     const user = yield call(axios, {
-      url: `${BASE_URL}/users?email=${email}`,
+      url: `${BASE_URL}/users?email=${defaultEmail}`,
       method: 'GET',
     });
 
