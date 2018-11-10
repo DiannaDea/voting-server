@@ -3,6 +3,9 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_ERROR,
   SIGN_OUT,
+  GET_USER_INIT,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
 } from './types';
 
 export default (state, action) => ({
@@ -24,10 +27,7 @@ export default (state, action) => ({
     isFetching: false,
     fetchData: {
       ...state.fetchData,
-      lastVoting: {
-        ...state.fetchData.lastVoting,
-        token: null,
-      },
+      token: null,
     },
     error: action.payload,
   }),
@@ -39,5 +39,27 @@ export default (state, action) => ({
       token: null,
     },
     error: state.error,
+  }),
+  [GET_USER_INIT]: () => ({
+    ...state,
+    isFetching: true,
+  }),
+  [GET_USER_SUCCESS]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      personalInfo: action.payload,
+    },
+    error: null,
+  }),
+  [GET_USER_ERROR]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      personalInfo: {},
+    },
+    error: action.payload,
   }),
 });
