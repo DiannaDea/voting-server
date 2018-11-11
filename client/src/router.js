@@ -7,6 +7,7 @@ import VotingForm from './routes/VotingForm';
 import VotingApp from './components/App/VotingApp';
 import MainApp from './components/App/MainPage';
 import LoginForm from './routes/LoginForm';
+import CreateGroupForm from './routes/CreateGroupForm';
 
 // FIXME: refactor create voting route url
 export const bodyRoutes = [
@@ -38,6 +39,10 @@ export const mainRoutes = [
   {
     path: '/login',
     component: LoginForm,
+  },
+  {
+    path: '/create/group',
+    component: CreateGroupForm,
   },
 ];
 

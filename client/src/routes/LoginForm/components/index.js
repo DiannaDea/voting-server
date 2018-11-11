@@ -40,9 +40,6 @@ const styles = theme => ({
     width: '100%',
     marginTop: theme.spacing.unit,
   },
-  submit: {
-    marginTop: theme.spacing.unit * 3,
-  },
 });
 
 class LoginForm extends Component {
