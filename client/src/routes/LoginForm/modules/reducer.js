@@ -39,6 +39,7 @@ export default (state, action) => ({
     isFetching: false,
     fetchData: {
       ...state.fetchData,
+      personalInfo: {},
       token: null,
     },
     error: state.error,
