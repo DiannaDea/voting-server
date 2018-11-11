@@ -3,6 +3,7 @@ export default {
     fetchData: {
       all: [],
       curGroupId: '',
+      lastGroup: {},
     },
     error: null,
   },
