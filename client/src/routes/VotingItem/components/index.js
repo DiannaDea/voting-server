@@ -2,8 +2,10 @@ import React, { Component, Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import dateFormat from 'dateformat';
+import Button from '@material-ui/core/Button';
 import CandidatesContainer from './CandidatesContainer';
 import CoefficientsContainer from './CoefficientsContainer';
+import VoteModal from './VoteModal';
 
 const VotingInput = styled(TextField)`
    margin: 20px 15px !important;
@@ -38,6 +40,10 @@ const VotingRow = styled.div`
 `;
 
 class VotingItem extends Component {
+  state = {
+    isVoteModalOpen: false,
+  };
+
   componentDidMount() {
     const { match, getOneVoting } = this.props;
     const { id } = match.params;
@@ -65,14 +71,30 @@ class VotingItem extends Component {
     event.preventDefault();
   };
 
+  toggleVoteModal(open) {
+    this.setState({
+      isVoteModalOpen: open,
+    });
+  }
+
   render() {
-    const { voting, candidates, userName } = this.props;
+    const {
+      voting, candidates, userName, sendVote, userId,
+    } = this.props;
+    const { isVoteModalOpen } = this.state;
 
     const votingForm = (voting) ? (
       <Fragment>
         <VotingInfoGroup>
           <VotingBadge>{userName}</VotingBadge>
           <VotingBadge isStatus>{voting.status}</VotingBadge>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => this.toggleVoteModal(true)}
+          >
+          Vote
+          </Button>
         </VotingInfoGroup>
         <VotingRow>
           <VotingInputGroup>
@@ -120,6 +142,15 @@ class VotingItem extends Component {
     return (
       <Fragment>
         {votingForm}
+        <VoteModal
+          votingId={(voting) ? voting._id : ''}
+          userId={userId}
+          sendVote={sendVote}
+          candidates={candidates}
+          coefficients={(voting) ? voting.coefficients : []}
+          open={isVoteModalOpen}
+          handleClose={() => this.toggleVoteModal(false)}
+        />
       </Fragment>
     );
   }
