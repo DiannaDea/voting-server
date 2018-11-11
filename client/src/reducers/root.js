@@ -5,6 +5,7 @@ import { routerReducer } from 'react-router-redux';
 import groupsReducer from './groups';
 import votingReducer from './votings';
 import userReducer from './user';
+import joinGroupReducer from './joinGroup';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   groups: groupsReducer,
   votings: votingReducer,
   user: userReducer,
+  joinGroup: joinGroupReducer,
 });
 
 export default rootReducer;

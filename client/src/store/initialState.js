@@ -26,4 +26,9 @@ export default {
     },
     error: null,
   },
+  joinGroup: {
+    userToCheck: {},
+    status: null,
+    error: null,
+  },
 };
