@@ -24,6 +24,7 @@ const ButtonCreateVoting = styled(Button)`
     margin-right: 25px !important;
 `;
 
+// FIXME: fix token management
 
 const Header = ({ signOut }) => {
   const cleanToken = () => {

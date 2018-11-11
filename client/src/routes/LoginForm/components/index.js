@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -107,6 +107,7 @@ class LoginForm extends Component {
                         control={<Checkbox value='remember' color='primary' />}
                         label='Remember me'
                       />
+                      <Link to='/create/group'>Create group</Link>
                       <Button
                         fullWidth
                         variant='contained'

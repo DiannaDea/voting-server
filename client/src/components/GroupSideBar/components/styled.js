@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
 
 export const GroupSideBarContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items:center;
     margin: 50px 5px;
 `;
 
@@ -32,4 +34,8 @@ export const CircleGroupShadow = styled.div`
 
 export const CircleGroupText = styled.p`
     margin: 0;
+`;
+
+export const AddGroupBtn = styled(Button)`
+    margin-top: 30px !important;
 `;
