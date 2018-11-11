@@ -6,6 +6,9 @@ import {
   GET_USER_INIT,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
+  SIGN_UP_INIT,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_ERROR,
 } from './types';
 
 export default (state, action) => ({
@@ -54,6 +57,28 @@ export default (state, action) => ({
     error: null,
   }),
   [GET_USER_ERROR]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      personalInfo: {},
+    },
+    error: action.payload,
+  }),
+  [SIGN_UP_INIT]: () => ({
+    ...state,
+    isFetching: true,
+  }),
+  [SIGN_UP_SUCCESS]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      personalInfo: action.payload.user,
+    },
+    error: null,
+  }),
+  [SIGN_UP_ERROR]: () => ({
     ...state,
     isFetching: false,
     fetchData: {

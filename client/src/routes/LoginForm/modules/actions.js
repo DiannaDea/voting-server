@@ -6,6 +6,9 @@ import {
   GET_USER_INIT,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
+  SIGN_UP_INIT,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_ERROR,
 } from './types';
 
 export const signInInit = payload => ({
@@ -41,3 +44,19 @@ export const getUserError = payload => ({
   type: GET_USER_ERROR,
   payload,
 });
+
+export const signUpInit = payload => ({
+  type: SIGN_UP_INIT,
+  payload,
+});
+
+export const signUpSuccess = payload => ({
+  type: SIGN_UP_SUCCESS,
+  payload,
+});
+
+export const signUpError = payload => ({
+  type: SIGN_UP_ERROR,
+  payload,
+});
+
