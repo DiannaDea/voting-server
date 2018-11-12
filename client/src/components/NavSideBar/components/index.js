@@ -65,7 +65,7 @@ class NavSideBar extends Component {
       return (votings && votings.length)
         ? votings.map(({ topic, _id }) => (
           <ListItem button key={_id}>
-            <Link to={`/votings/${_id}`}>
+            <Link to={`/app/votings/${_id}`}>
               <SubItemText inset primary={`# ${topic}`} />
             </Link>
           </ListItem>))

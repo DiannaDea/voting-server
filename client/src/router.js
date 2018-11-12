@@ -4,25 +4,54 @@ import { Route } from 'react-router-dom';
 import Tacos from './routes/Tacos';
 import VotingItem from './routes/VotingItem';
 import VotingForm from './routes/VotingForm';
+import VotingApp from './components/App/VotingApp';
+import MainApp from './components/App/MainPage';
+import LoginForm from './routes/LoginForm';
+import CreateGroupForm from './routes/CreateGroupForm';
+import SignUp from './routes/SignUp';
 
-//FIXME: refactor create voting route url
-const routes = [
+// FIXME: refactor create voting route url
+export const bodyRoutes = [
   {
-    path: '/',
+    path: '/app',
     exact: true,
     component: Tacos,
   },
   {
-    path: '/create/votings',
+    path: '/app/create/votings',
     component: VotingForm,
   },
   {
-    path: '/votings/:id',
+    path: '/app/votings/:id',
     component: VotingItem,
   },
 ];
 
-export default function router() {
+export const mainRoutes = [
+  {
+    path: '/',
+    exact: true,
+    component: MainApp,
+  },
+  {
+    path: '/app',
+    component: VotingApp,
+  },
+  {
+    path: '/login',
+    component: LoginForm,
+  },
+  {
+    path: '/auth/signup',
+    component: SignUp,
+  },
+  {
+    path: '/create/group',
+    component: CreateGroupForm,
+  },
+];
+
+export const router = (routes) => {
   return (
     <Fragment>
       {routes.map((route, index) => (
@@ -37,4 +66,4 @@ export default function router() {
       ))}
     </Fragment>
   );
-}
+};

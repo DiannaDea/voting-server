@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -6,8 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TopicForm from './TopicForm';
-import CoeffForm from './WeightsForm';
-import CandidatesForm from './CandidatesForm';
+import ArrayOfObjects from './ArrayOfObjects';
 
 const styles = theme => ({
   root: {
@@ -22,11 +21,6 @@ const styles = theme => ({
   },
 });
 
-function getSteps() {
-  return ['Choose voting topic', 'Set coefficients', 'Add candidates'];
-}
-
-
 class VotingForm extends React.Component {
     state = {
       activeStep: 0,
@@ -36,49 +30,86 @@ class VotingForm extends React.Component {
         endDate: '',
         votersPercent: '',
       },
-      weights: {
-        name: '',
-        question: '',
-        cost: 0,
-      },
-      candidates: {
-
-      },
+      weights: [],
+      candidates: [],
     };
 
-    stepToComponentMap = {
-      0: <TopicForm onChange={this.handleInputChange('formData')} />,
-      1: <CoeffForm onChange={this.handleInputChange('weights')} />,
-      2: <CandidatesForm onChange={this.handleInputChange('candidates')} />,
-    }
+    steps = ['Choose voting topic', 'Set coefficients', 'Add candidates']
 
-    handleInputChange = namespace => inputName => (event) => {
-      event.preventDefault();
-      this.setState(state => ({
-        [namespace]: {
-          ...state[namespace],
-          [inputName]: event.target.value,
-        },
-      }));
-    }
+    changeArrayValue = namespace => index => inputName => ({ target: { value } }) => this.setState((state) => {
+      const newNamespaceValue = [
+        ...state[namespace].slice(0, index),
+        { ...state[namespace][index], [inputName]: value },
+        ...state[namespace].slice(index + 1),
+      ];
 
-    handleNext = () => {
+      return {
+        ...state,
+        [namespace]: newNamespaceValue,
+      };
+    });
+
+    addItemToArray = (namespace, initialValue) => () => this.setState((state) => {
+      return {
+        ...state,
+        [namespace]: [...state[namespace], initialValue],
+      };
+    })
+
+    objectChange = namespace => inputName => ({ target: { value } }) => this.setState(state => ({
+      ...state,
+      [namespace]: {
+        ...state[namespace],
+        [inputName]: value,
+      },
+    }));
+
+    stepForward = () => {
       const { activeStep } = this.state;
       this.setState({
         activeStep: activeStep + 1,
       });
     };
 
-    handleBack = () => {
+    stepBack = () => {
       this.setState(state => ({
         activeStep: state.activeStep - 1,
       }));
     };
 
     render() {
-      const { classes } = this.props;
-      const steps = getSteps();
-      const { activeStep } = this.state;
+      const { state, props, steps } = this;
+      const { classes } = props;
+
+      const { activeStep } = state;
+
+      const stepToComponentMap = [
+        <TopicForm
+          onChange={this.objectChange('voting')}
+          voting={state.voting}
+        />,
+        <ArrayOfObjects
+          onChange={this.changeArrayValue('weights')}
+          addItemToArray={this.addItemToArray('weights', { name: '', cost: '', question: '' })}
+          array={state.weights}
+          fields={[
+            { label: 'Name', value: 'name' },
+            { label: 'Cost', value: 'cost' },
+            { label: 'question', value: 'question' },
+          ]}
+          buttonText='Add Weight'
+        />,
+        <ArrayOfObjects
+          onChange={this.changeArrayValue('candidates')}
+          addItemToArray={this.addItemToArray('candidates', { name: '', description: '' })}
+          array={state.candidates}
+          fields={[
+            { label: 'Name', value: 'name' },
+            { label: 'Description', value: 'description' },
+          ]}
+          buttonText='Add candidate'
+        />,
+      ];
 
       return (
         <div className={classes.root}>
@@ -96,11 +127,11 @@ class VotingForm extends React.Component {
               </Typography>
             ) : (
               <div>
-                {this.stepToComponentMap[activeStep] || 'Unknown step'}
+                {stepToComponentMap[activeStep] || 'Unknown step'}
                 <div>
                   <Button
                     disabled={activeStep === 0}
-                    onClick={this.handleBack}
+                    onClick={this.stepBack}
                     className={classes.button}
                   >
                     Back
@@ -108,7 +139,7 @@ class VotingForm extends React.Component {
                   <Button
                     variant='contained'
                     color='primary'
-                    onClick={this.handleNext}
+                    onClick={this.stepForward}
                     className={classes.button}
                   >
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}

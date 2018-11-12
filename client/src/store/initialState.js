@@ -3,6 +3,7 @@ export default {
     fetchData: {
       all: [],
       curGroupId: '',
+      lastGroup: {},
     },
     error: null,
   },
@@ -16,6 +17,18 @@ export default {
         candidates: [],
       },
     },
+    error: null,
+  },
+  user: {
+    fetchData: {
+      token: null,
+      personalInfo: {},
+    },
+    error: null,
+  },
+  joinGroup: {
+    userToCheck: {},
+    status: null,
     error: null,
   },
 };
