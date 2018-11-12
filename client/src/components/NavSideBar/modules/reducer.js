@@ -6,6 +6,14 @@ import {
   GET_RECENT_VOTINGS_SUCCESS,
   GET_RECENT_VOTINGS_ERROR,
 } from './types';
+import {
+  ADD_VOTING_INIT,
+  ADD_VOTING_SUCCESS,
+  ADD_VOTING_ERROR,
+  ADD_CANDIDATES_INIT,
+  ADD_CANDIDATES_SUCCESS,
+  ADD_CANDIDATES_ERROR,
+} from '../../../routes/VotingForm/modules/types';
 
 export default (state, action) => ({
   [GET_RECENT_VOTINGS_INIT]: () => ({
@@ -56,5 +64,37 @@ export default (state, action) => ({
       new: state.fetchData.new || [],
     },
     error: action.payload,
+  }),
+  [ADD_VOTING_INIT]: () => ({
+    ...state,
+    isFetching: true,
+  }),
+  [ADD_VOTING_SUCCESS]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      lastVoting: {
+        ...state.fetchData.lastVoting,
+        data: action.payload,
+      },
+    },
+    error: null,
+  }),
+  [ADD_VOTING_ERROR]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      lastVoting: {
+        ...state.fetchData.lastVoting,
+        data: null,
+      },
+    },
+    error: action.payload,
+  }),
+  [ADD_CANDIDATES_INIT]: () => ({
+    ...state,
+    isFetching: true,
   }),
 });

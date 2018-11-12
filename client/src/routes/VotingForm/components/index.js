@@ -26,15 +26,15 @@ class VotingForm extends React.Component {
       activeStep: 0,
       voting: {
         topic: '',
-        startDate: '',
-        endDate: '',
+        dateStart: '',
+        dateEnd: '',
         votersPercent: '',
       },
       weights: [],
       candidates: [],
     };
 
-    steps = ['Choose voting topic', 'Set coefficients', 'Add candidates']
+    steps = ['Choose voting topic', 'Set coefficients', 'Add candidates'];
 
     changeArrayValue = namespace => index => inputName => ({ target: { value } }) => this.setState((state) => {
       const newNamespaceValue = [
@@ -54,7 +54,7 @@ class VotingForm extends React.Component {
         ...state,
         [namespace]: [...state[namespace], initialValue],
       };
-    })
+    });
 
     objectChange = namespace => inputName => ({ target: { value } }) => this.setState(state => ({
       ...state,
@@ -65,7 +65,32 @@ class VotingForm extends React.Component {
     }));
 
     stepForward = () => {
-      const { activeStep } = this.state;
+      const {
+        activeStep, voting, weights, topic, candidates,
+      } = this.state;
+      const {
+        createVoting, groupId, userId, lastVoting, addCandidate,
+      } = this.props;
+
+      if (activeStep === 1) {
+        createVoting({
+          groupId,
+          creatorId: userId,
+          coefficients: weights.map((w, index) => ({ _id: index, ...w })),
+          ...voting,
+        });
+      }
+
+      if (activeStep === 2 && lastVoting && lastVoting.data) {
+        // FIXME: add all candidatees in 1 request
+        candidates.map((candidate) => {
+          addCandidate({
+            votingId: lastVoting.data._id,
+            ...candidate,
+          });
+        });
+      }
+
       this.setState({
         activeStep: activeStep + 1,
       });
