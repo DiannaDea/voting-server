@@ -1,13 +1,3 @@
-import { connect } from 'react-redux';
-import GroupSideBar from './components';
-import { getUserGroupsInit } from './utils/actions';
+import GroupSideBar from './container';
 
-const mapStateToProps = state => ({
-    groups: state.groups.data,
-});
-
-const mapDispatchToProps = dispatch => ({
-    getUserGroups: () => dispatch(getUserGroupsInit()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(GroupSideBar);
+export default GroupSideBar;

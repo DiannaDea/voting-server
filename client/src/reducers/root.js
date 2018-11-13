@@ -2,13 +2,18 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 
-import groupsReducer from '../components/GroupSideBar/utils/reducer';
+import groupsReducer from './groups';
+import votingReducer from './votings';
+import userReducer from './user';
+import joinGroupReducer from './joinGroup';
 
 const rootReducer = combineReducers({
-    routing: routerReducer,
-    form: formReducer,
-    groups: groupsReducer,
+  routing: routerReducer,
+  form: formReducer,
+  groups: groupsReducer,
+  votings: votingReducer,
+  user: userReducer,
+  joinGroup: joinGroupReducer,
 });
-
 
 export default rootReducer;

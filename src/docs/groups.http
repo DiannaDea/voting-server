@@ -9,4 +9,9 @@ Content-Type: application/json
   "membersEmails": ["test2@test.test", "test3@test.test"]
 }
 
+
+### Get votings by state
+
+GET http://localhost:5000/groups/5bcc4ccb09ee131efeac922e/users/5bc8a8599c3d232278530a47/votings?state=recent
+
 ###

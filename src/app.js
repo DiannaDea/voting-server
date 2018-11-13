@@ -5,6 +5,7 @@ import logger from 'koa-logger';
 import koaStatic from 'koa-static';
 import path from 'path';
 import cors from '@koa/cors';
+import send from 'koa-send';
 
 import connectToDb from './services/dbConnection';
 import VotingCron from './services/votingCron';
@@ -27,5 +28,9 @@ votingCron.startVoting();
 votingCron.endVoting();
 
 routes.forEach(route => app.use(route));
+
+app.use(async (ctx) => {
+    await send(ctx, 'index.html', { root: path.resolve(__dirname, '../client/build') });
+});
 
 export default app;

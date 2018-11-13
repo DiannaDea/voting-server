@@ -8,6 +8,7 @@ const errors = {
     },
     groups: {
         noSuchId: id => `No user with such id ${id}`,
+        incorrectVotingState: 'Incorrect voting state',
     },
     auth: {
         generateHashErr: 'Unable to generate hash',

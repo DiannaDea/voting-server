@@ -4,8 +4,8 @@ POST http://localhost:5000/votings
 Content-Type: application/json
 
 {
-  "topic": "Test voting ",
-  "groupId": "5bc8a83e9c3d232278530a46",
+  "topic": "Go to Bali?)",
+  "groupId": "5bcc4ccb09ee131efeac922e",
   "creatorId": "5bc8a8649c3d232278530a48",
   "dateStart": "Fri Oct 19 2018 19:27:28",
   "dateEnd": "Sun Nov 25 2018 10:00:00",
@@ -40,7 +40,7 @@ GET http://localhost:5000/votings/5bcc764672eeb941e571ec1e/candidates
 
 ### Vote
 
-POST http://localhost:5000/votings/5bcc764672eeb941e571ec1e/vote
+POST http://localhost:5000/votings/5bd47a639d1e493e1ba095f7/vote
 Content-Type: application/json
 
 {
@@ -53,4 +53,5 @@ Content-Type: application/json
 
 GET http://localhost:5000/votings/5bcc764672eeb941e571ec1e/results
 
-###
+
+

@@ -21,4 +21,20 @@ groupsRouter.route({
     handler: GroupsController.create,
 });
 
+
+groupsRouter.route({
+    method: 'get',
+    path: '/:groupId/users/:userId/votings',
+    validate: {
+        params: {
+            groupId: Joi.string().required(),
+            userId: Joi.string().required(),
+        },
+        query: {
+            state: Joi.string().required().valid('new', 'recent'),
+        },
+    },
+    handler: GroupsController.getVotingsByVoteState,
+});
+
 export default groupsRouter;
