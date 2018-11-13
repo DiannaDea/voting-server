@@ -24,6 +24,23 @@ export default class CandidateController {
         }
     }
 
+    static async createMany(ctx) {
+        const { candidates } = ctx.request.body;
+
+        try {
+            const candidatesCreated = await Promise.all(candidates.map(candidate => (Candidate.create({
+                _id: new mongoose.Types.ObjectId(),
+                ...candidate,
+            }))));
+
+            return (candidatesCreated && candidatesCreated.length)
+                ? ctx.send(200, candidatesCreated)
+                : ctx.send(400, candidateErrors.unableToCreateMany);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
     static async get(ctx) {
         const { candidateId } = ctx.params;
 

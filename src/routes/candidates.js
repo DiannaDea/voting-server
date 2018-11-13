@@ -8,6 +8,23 @@ candidatesRoute.prefix('/candidates');
 
 candidatesRoute.route({
     method: 'post',
+    path: '/many',
+    validate: {
+        body: {
+            candidates: Joi.array().items(Joi.object({
+                votingId: Joi.string().required(),
+                name: Joi.string().required(),
+                description: Joi.string(),
+            })),
+        },
+        type: 'json',
+    },
+    handler: CandidatesController.createMany,
+});
+
+
+candidatesRoute.route({
+    method: 'post',
     path: '/',
     validate: {
         body: {

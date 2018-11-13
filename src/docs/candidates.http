@@ -9,6 +9,28 @@ Content-Type: application/json
   "description": "Diana candidate"
 }
 
+### Create candidates (many) for voting
+
+POST http://localhost:5000/candidates/many
+Content-Type: application/json
+
+{
+  "candidates": [{
+    "votingId": "5bcc764672eeb941e571ec1e",
+    "name": "Diana 1",
+    "description": "Diana candidate"
+  }, {
+    "votingId": "5bcc764672eeb941e571ec1e",
+    "name": "Diana 2",
+    "description": "Diana candidate"
+  }, {
+    "votingId": "5bcc764672eeb941e571ec1e",
+    "name": "Diana 3",
+    "description": "Diana candidate"}
+  ]
+}
+
+
 ### Get candidate
 
 GET http://localhost:5000/candidates/6bc9e03b80c69b470655012a
