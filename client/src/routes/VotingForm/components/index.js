@@ -66,10 +66,10 @@ class VotingForm extends React.Component {
 
     stepForward = () => {
       const {
-        activeStep, voting, weights, topic, candidates,
+        activeStep, voting, weights, candidates,
       } = this.state;
       const {
-        createVoting, groupId, userId, lastVoting, addCandidate,
+        createVoting, groupId, userId, lastVoting, addCandidates,
       } = this.props;
 
       if (activeStep === 1) {
@@ -82,12 +82,11 @@ class VotingForm extends React.Component {
       }
 
       if (activeStep === 2 && lastVoting && lastVoting.data) {
-        // FIXME: add all candidatees in 1 request
-        candidates.map((candidate) => {
-          addCandidate({
+        addCandidates({
+          candidates: candidates.map(candidate => ({
             votingId: lastVoting.data._id,
             ...candidate,
-          });
+          })),
         });
       }
 

@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   createVoting: payload => dispatch(addVotingInit(payload)),
-  addCandidate: payload => dispatch(addCandidatesInit(payload)),
+  addCandidates: payload => dispatch(addCandidatesInit(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VotingForm);

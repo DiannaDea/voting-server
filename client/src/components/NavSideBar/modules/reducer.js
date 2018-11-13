@@ -75,8 +75,8 @@ export default (state, action) => ({
     fetchData: {
       ...state.fetchData,
       lastVoting: {
-        ...state.fetchData.lastVoting,
         data: action.payload,
+        candidates: [],
       },
     },
     error: null,
@@ -88,7 +88,6 @@ export default (state, action) => ({
       ...state.fetchData,
       lastVoting: {
         ...state.fetchData.lastVoting,
-        data: null,
       },
     },
     error: action.payload,
@@ -96,5 +95,35 @@ export default (state, action) => ({
   [ADD_CANDIDATES_INIT]: () => ({
     ...state,
     isFetching: true,
+  }),
+  [ADD_CANDIDATES_SUCCESS]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      lastVoting: {
+        ...state.fetchData.lastVoting,
+        candidates: action.payload,
+      },
+      new: [
+        ...state.fetchData.new,
+        {
+          ...state.fetchData.lastVoting.data,
+          candidates: action.payload,
+        },
+      ],
+    },
+    error: null,
+  }),
+  [ADD_CANDIDATES_ERROR]: () => ({
+    ...state,
+    isFetching: false,
+    fetchData: {
+      ...state.fetchData,
+      lastVoting: {
+        ...state.fetchData.lastVoting,
+      },
+    },
+    error: action.payload,
   }),
 });

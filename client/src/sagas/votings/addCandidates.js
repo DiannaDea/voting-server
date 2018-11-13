@@ -10,7 +10,7 @@ import {
 export default function* addCandidates({ payload }) {
   try {
     const candidates = yield call(axios, {
-      url: `${BASE_URL}/candidates`,
+      url: `${BASE_URL}/candidates/many`,
       method: 'POST',
       data: payload,
     });
