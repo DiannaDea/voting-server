@@ -3,3 +3,5 @@ const host = process.env.HOST || 'http://localhost';
 
 export const userId = '';
 export const BASE_URL = `${host}:${port}`;
+
+console.log('BASE URL', BASE_URL);
