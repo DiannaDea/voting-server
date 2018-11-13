@@ -36,7 +36,7 @@ export default class GroupsController {
                 });
             }));
 
-            return ctx.send(200);
+            return ctx.send(200, group);
         } catch (error) {
             return ctx.send(500, error);
         }
