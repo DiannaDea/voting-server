@@ -35,6 +35,7 @@ const TopicForm = ({ onChange, voting }) => (
     </VotingInputGroup>
     <VotingInputGroup>
       <VotingInput
+        type='number'
         label='Voters percent'
         value={voting.votersPercent}
         onChange={onChange('votersPercent')}

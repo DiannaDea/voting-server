@@ -82,6 +82,10 @@ class LoginForm extends Component {
                     <Typography component='h1' variant='h5'>
                      Sign in
                     </Typography>
+                    <Typography component='p' variant='p'>
+                      Want to create group?
+                      <Link to='/create/group'> Create now!</Link>
+                    </Typography>
                     <form className={classes.form}>
                       <FormControl margin='normal' required fullWidth>
                         <InputLabel htmlFor='email'>Email Address</InputLabel>
@@ -103,11 +107,6 @@ class LoginForm extends Component {
                           onChange={event => this.handleChange(event, 'password')}
                         />
                       </FormControl>
-                      <FormControlLabel
-                        control={<Checkbox value='remember' color='primary' />}
-                        label='Remember me'
-                      />
-                      <Link to='/create/group'>Create group</Link>
                       <Button
                         fullWidth
                         variant='contained'

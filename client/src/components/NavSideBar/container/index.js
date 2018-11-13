@@ -9,6 +9,8 @@ const mapStateToProps = state => ({
   votingsNew: state.votings.fetchData.new,
   votingsRecent: state.votings.fetchData.recent,
   groups: state.groups.fetchData.all || [],
+  firstName: state.user.fetchData.personalInfo.firstName,
+  lastName: state.user.fetchData.personalInfo.lastName,
 });
 
 const mapDispatchToProps = dispatch => ({

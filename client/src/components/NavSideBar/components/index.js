@@ -74,7 +74,7 @@ class NavSideBar extends Component {
 
     render() {
       const {
-        votingsNew, votingsRecent, groups, curGroupId,
+        votingsNew, votingsRecent, groups, curGroupId, firstName, lastName,
       } = this.props;
       const { openRecent, openNew } = this.state;
 
@@ -84,7 +84,13 @@ class NavSideBar extends Component {
         <React.Fragment>
           <GroupContainer>
             <h2>{ (currentGroup) ? currentGroup.name : '' }</h2>
-            <h5>Diana Baburina</h5>
+            <h5>
+              {
+                (firstName && lastName)
+                  ? `${firstName} ${lastName}`
+                  : null
+              }
+            </h5>
             <hr />
           </GroupContainer>
           <NavList>
@@ -113,7 +119,9 @@ class NavSideBar extends Component {
               </List>
             </Collapse>
             <ListItem button>
-              <ItemText inset primary='All votings' />
+              <ItemText inset>
+                <Link to='/app/votings/list'>All voting</Link>
+              </ItemText>
             </ListItem>
             <ListItem button>
               <ItemText inset primary='Group members' />

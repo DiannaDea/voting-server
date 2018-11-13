@@ -79,14 +79,20 @@ class VotingItem extends Component {
 
   render() {
     const {
-      voting, candidates, userName, sendVote, userId,
+      voting, candidates, firstName, lastName, sendVote, userId,
     } = this.props;
     const { isVoteModalOpen } = this.state;
 
     const votingForm = (voting) ? (
       <Fragment>
         <VotingInfoGroup>
-          <VotingBadge>{userName}</VotingBadge>
+          <VotingBadge>
+            {
+              (firstName && lastName)
+                ? `${firstName} ${lastName}`
+                : null
+            }
+          </VotingBadge>
           <VotingBadge isStatus>{voting.status}</VotingBadge>
           <Button
             variant='contained'

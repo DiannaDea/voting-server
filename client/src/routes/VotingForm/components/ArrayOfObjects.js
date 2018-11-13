@@ -21,7 +21,14 @@ const ArrayOfObjects = ({
         ))}
       </TableBody>
     </Table>
-    <Button variant='contained' color='primary' onClick={addItemToArray}>{buttonText}</Button>
+    <Button
+      style={{ margin: '10px 0' }}
+      variant='outlined'
+      color='primary'
+      onClick={addItemToArray}
+    >
+      {buttonText}
+    </Button>
   </Fragment>
 );
 

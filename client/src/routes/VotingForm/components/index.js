@@ -5,6 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 import TopicForm from './TopicForm';
 import ArrayOfObjects from './ArrayOfObjects';
 
@@ -26,7 +27,7 @@ class VotingForm extends React.Component {
       activeStep: 0,
       voting: {
         topic: '',
-        dateStart: '',
+        dateStart: moment(new Date()).format('YYYY-MM-DDTkk:mm'),
         dateEnd: '',
         votersPercent: '',
       },
@@ -147,7 +148,7 @@ class VotingForm extends React.Component {
           <div>
             {activeStep === steps.length ? (
               <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
+                All steps completed - you are finished
               </Typography>
             ) : (
               <div>

@@ -8,7 +8,8 @@ import {
 } from '../modules/actions';
 
 const mapStateToProps = state => ({
-  userName: 'Diana Baburina',
+  firstName: state.user.fetchData.personalInfo.firstName,
+  lastName: state.user.fetchData.personalInfo.lastName,
   voting: state.votings.fetchData.lastVoting.data,
   candidates: state.votings.fetchData.lastVoting.candidates,
   userId: state.user.fetchData.personalInfo._id,

@@ -3,7 +3,9 @@ import CreateGroupForm from '../components';
 import { createGroupInit } from '../modules/actions';
 
 const mapStateToProps = state => ({
-  groupId: state.groups.fetchData.lastGroup._id,
+  groupId: (state.groups.fetchData.lastGroup)
+    ? state.groups.fetchData.lastGroup._id
+    : null,
 });
 
 const mapDispatchToProps = dispatch => ({
