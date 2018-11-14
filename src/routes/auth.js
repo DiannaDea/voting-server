@@ -5,7 +5,7 @@ const { Joi } = router;
 
 const authRouter = router();
 
-authRouter.prefix('/auth');
+authRouter.prefix('/api/auth');
 
 authRouter.route({
     method: 'post',

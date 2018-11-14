@@ -5,7 +5,7 @@ import GroupsController from '../controllers/GroupsController';
 const usersRouter = router();
 const { Joi } = router;
 
-usersRouter.prefix('/users');
+usersRouter.prefix('/api/users');
 
 usersRouter.use('/:userId/groups', UsersController.userExists);
 

@@ -4,7 +4,7 @@ import VotingController from '../controllers/VotingController';
 const votingsRouter = router();
 const { Joi } = router;
 
-votingsRouter.prefix('/votings');
+votingsRouter.prefix('/api/votings');
 
 votingsRouter.route({
     method: 'post',

@@ -4,7 +4,7 @@ import GroupsController from '../controllers/GroupsController';
 const groupsRouter = router();
 const { Joi } = router;
 
-groupsRouter.prefix('/groups');
+groupsRouter.prefix('/api/groups');
 
 groupsRouter.route({
     method: 'post',

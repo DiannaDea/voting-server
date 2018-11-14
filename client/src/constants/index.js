@@ -2,6 +2,6 @@ const port = process.env.PORT || '5000';
 const host = process.env.HOST || 'http://localhost';
 
 export const userId = '';
-export const BASE_URL = `${host}:${port}`;
+export const BASE_URL = `${host}:${port}/api`;
 
 console.log('BASE URL', BASE_URL);

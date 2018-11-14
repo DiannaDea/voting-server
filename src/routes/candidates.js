@@ -4,7 +4,7 @@ import CandidatesController from '../controllers/CandidateController';
 const candidatesRoute = router();
 const { Joi } = router;
 
-candidatesRoute.prefix('/candidates');
+candidatesRoute.prefix('/api/candidates');
 
 candidatesRoute.route({
     method: 'post',
