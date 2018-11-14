@@ -1,16 +1,16 @@
 ### Check user exists
 
-GET http://localhost:5000/users?email=adm77i7n@admin.com
+GET http://localhost:5000/api/users?email=adm77i7n@admin.com
 Content-Type: application/json
 
 ### Get user groups
 
-GET http://localhost:5000/users/5bc8a86d9c3d232278530a49/groups
+GET http://localhost:5000/api/users/5bc8a86d9c3d232278530a49/groups
 Content-Type: application/json
 
 ### Join group
 
-POST http://localhost:5000/users/5bc8a86d9c3d232278530a49/groups/5bc8a83e9c3d232278530a46
+POST http://localhost:5000/api/users/5bc8a86d9c3d232278530a49/groups/5bc8a83e9c3d232278530a46
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ### Leave group
 
-PUT http://localhost:5000/users/5bc8a86d9c3d232278530a49/groups/5bc8a83e9c3d232278530a46
+PUT http://localhost:5000/api/users/5bc8a86d9c3d232278530a49/groups/5bc8a83e9c3d232278530a46
 Content-Type: application/json
 
 ###

@@ -1,6 +1,6 @@
 ### Create voting, voting candidates and coefficients
 
-POST http://localhost:5000/votings
+POST http://localhost:5000/api/votings
 Content-Type: application/json
 
 {
@@ -17,15 +17,15 @@ Content-Type: application/json
 
 ### Get voting
 
-GET http://localhost:5000/votings/5bc9da58de27d540947ffa0a
+GET http://localhost:5000/api/votings/5bc9da58de27d540947ffa0a
 
 ### Delete voting
 
-DELETE http://localhost:5000/votings/5bc9e5560449594aa9c197f3
+DELETE http://localhost:5000/api/votings/5bc9e5560449594aa9c197f3
 
 ### Update voting
 
-PUT http://localhost:5000/votings/5bc9da8fde27d540947ffa0b
+PUT http://localhost:5000/api/votings/5bc9da8fde27d540947ffa0b
 Content-Type: application/json
 
 {
@@ -36,11 +36,11 @@ Content-Type: application/json
 
 ### Get voting candidates
 
-GET http://localhost:5000/votings/5bcc764672eeb941e571ec1e/candidates
+GET http://localhost:5000/api/votings/5bcc764672eeb941e571ec1e/candidates
 
 ### Vote
 
-POST http://localhost:5000/votings/5bd47a639d1e493e1ba095f7/vote
+POST http://localhost:5000/api/votings/5bd47a639d1e493e1ba095f7/vote
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 
 ### Get voting results
 
-GET http://localhost:5000/votings/5bcc764672eeb941e571ec1e/results
+GET http://localhost:5000/api/votings/5bcc764672eeb941e571ec1e/results
 
 
 

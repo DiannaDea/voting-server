@@ -1,6 +1,6 @@
 ### Create candidate for voting
 
-POST http://localhost:5000/candidates
+POST http://localhost:5000/api/candidates
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ### Create candidates (many) for voting
 
-POST http://localhost:5000/candidates/many
+POST http://localhost:5000/api/candidates/many
 Content-Type: application/json
 
 {
@@ -33,15 +33,15 @@ Content-Type: application/json
 
 ### Get candidate
 
-GET http://localhost:5000/candidates/6bc9e03b80c69b470655012a
+GET http://localhost:5000/api/candidates/6bc9e03b80c69b470655012a
 
 ### Delete candidate
 
-DELETE http://localhost:5000/candidates/5bc9e03b80c69b470655012a
+DELETE http://localhost:5000/api/candidates/5bc9e03b80c69b470655012a
 
 ### Update candidate
 
-PUT http://localhost:5000/candidates/5bc9db6c84f54c411dc4c6fa
+PUT http://localhost:5000/api/candidates/5bc9db6c84f54c411dc4c6fa
 Content-Type: application/json
 
 {
