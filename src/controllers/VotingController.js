@@ -204,6 +204,23 @@ export default class VotingController {
         }
     }
 
+    static async userCanVote(ctx) {
+        const { votingId, userId } = ctx.params;
+
+        try {
+            const userVote = await Vote.findOne({
+                votingId, userId,
+            });
+
+            return (userVote)
+                ? ctx.send(200, userVote)
+                : ctx.send(204);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
+
     static async votingExists(ctx, next) {
         const { votingId } = ctx.params;
         const voting = await Voting.findById(votingId);

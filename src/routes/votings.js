@@ -112,4 +112,16 @@ votingsRouter.route({
     handler: VotingController.getVotingResults,
 });
 
+votingsRouter.route({
+    method: 'get',
+    path: '/:votingId/users/:userId',
+    validate: {
+        params: {
+            votingId: Joi.string().required(),
+            userId: Joi.string().required(),
+        },
+    },
+    handler: VotingController.userCanVote,
+});
+
 export default votingsRouter;
