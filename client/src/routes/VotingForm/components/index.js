@@ -104,7 +104,7 @@ class VotingForm extends React.Component {
 
     render() {
       const { state, props, steps } = this;
-      const { classes } = props;
+      const { classes, language } = props;
 
       const { activeStep } = state;
 
@@ -112,6 +112,7 @@ class VotingForm extends React.Component {
         <TopicForm
           onChange={this.objectChange('voting')}
           voting={state.voting}
+          language={language}
         />,
         <ArrayOfObjects
           onChange={this.changeArrayValue('weights')}

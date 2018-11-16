@@ -1,3 +1,5 @@
+import text from '../l10n/text';
+
 export default {
   groups: {
     fetchData: {
@@ -30,5 +32,11 @@ export default {
     userToCheck: {},
     status: null,
     error: null,
+  },
+  appText: {
+    lang: 'en',
+    text: {
+      ...text.en,
+    },
   },
 };

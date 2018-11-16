@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 
 import { VotingInput, VotingInputGroup } from './styled';
 
-const TopicForm = ({ onChange, voting }) => (
+const TopicForm = ({ onChange, voting, language, }) => (
   <Fragment>
     <VotingInputGroup>
       <VotingInput
-        label='Topic'
+        /*label={language.forms.topicForm.topic}*/
         value={voting.topic}
         onChange={onChange('topic')}
       />
