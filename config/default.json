@@ -9,7 +9,6 @@
     },
     "mail": {
         "email": "dianababurina74@gmail.com",
-        "service": "gmail",
-        "emailStart": "http://localhost:3000"
+        "service": "gmail"
     }
 }
