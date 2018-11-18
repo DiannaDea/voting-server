@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 
 import { VotingInput, VotingInputGroup } from './styled';
 
-const TopicForm = ({ onChange, voting, language, }) => (
+const TopicForm = ({ onChange, voting, languageText }) => (
   <Fragment>
     <VotingInputGroup>
       <VotingInput
-        /*label={language.forms.topicForm.topic}*/
+        label={languageText.topic}
         value={voting.topic}
         onChange={onChange('topic')}
       />
@@ -14,7 +14,7 @@ const TopicForm = ({ onChange, voting, language, }) => (
     <VotingInputGroup>
       <VotingInput
         id='datetime-local'
-        label='Voting start'
+        label={languageText.votingStart}
         type='datetime-local'
         InputLabelProps={{
           shrink: true,
@@ -24,7 +24,7 @@ const TopicForm = ({ onChange, voting, language, }) => (
       />
       <VotingInput
         id='datetime-local'
-        label='Voting end'
+        label={languageText.votingEnd}
         type='datetime-local'
         InputLabelProps={{
           shrink: true,
@@ -36,7 +36,7 @@ const TopicForm = ({ onChange, voting, language, }) => (
     <VotingInputGroup>
       <VotingInput
         type='number'
-        label='Voters percent'
+        label={languageText.votersPercent}
         value={voting.votersPercent}
         onChange={onChange('votersPercent')}
       />

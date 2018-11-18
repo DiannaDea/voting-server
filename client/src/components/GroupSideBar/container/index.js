@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   groups: state.groups.fetchData.all,
   curGroupId: state.groups.fetchData.curGroupId,
   userId: state.user.fetchData.personalInfo._id,
+  languageText: state.language.text.groupSideBar,
 });
 
 const mapDispatchToProps = dispatch => ({

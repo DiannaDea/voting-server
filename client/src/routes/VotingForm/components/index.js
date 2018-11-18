@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import TopicForm from './TopicForm';
 import ArrayOfObjects from './ArrayOfObjects';
+import { lang } from 'moment';
 
 const styles = theme => ({
   root: {
@@ -34,8 +35,6 @@ class VotingForm extends React.Component {
       weights: [],
       candidates: [],
     };
-
-    steps = ['Choose voting topic', 'Set coefficients', 'Add candidates'];
 
     changeArrayValue = namespace => index => inputName => ({ target: { value } }) => this.setState((state) => {
       const newNamespaceValue = [
@@ -103,37 +102,39 @@ class VotingForm extends React.Component {
     };
 
     render() {
-      const { state, props, steps } = this;
-      const { classes, language } = props;
+      const { state, props } = this;
+      const { classes, languageText } = props;
 
       const { activeStep } = state;
+
+      const { steps } = languageText;
 
       const stepToComponentMap = [
         <TopicForm
           onChange={this.objectChange('voting')}
           voting={state.voting}
-          language={language}
+          languageText={languageText.forms.topicForm}
         />,
         <ArrayOfObjects
           onChange={this.changeArrayValue('weights')}
           addItemToArray={this.addItemToArray('weights', { name: '', cost: '', question: '' })}
           array={state.weights}
           fields={[
-            { label: 'Name', value: 'name' },
-            { label: 'Cost', value: 'cost' },
-            { label: 'question', value: 'question' },
+            { label: languageText.forms.weightForm.name, value: 'name' },
+            { label: languageText.forms.weightForm.cost, value: 'cost' },
+            { label: languageText.forms.weightForm.question, value: 'question' },
           ]}
-          buttonText='Add Weight'
+          buttonText={languageText.buttons.addWeight}
         />,
         <ArrayOfObjects
           onChange={this.changeArrayValue('candidates')}
           addItemToArray={this.addItemToArray('candidates', { name: '', description: '' })}
           array={state.candidates}
           fields={[
-            { label: 'Name', value: 'name' },
-            { label: 'Description', value: 'description' },
+            { label: languageText.forms.candidatesForm.name, value: 'name' },
+            { label: languageText.forms.candidatesForm.description, value: 'description' },
           ]}
-          buttonText='Add candidate'
+          buttonText={languageText.buttons.addCandidate}
         />,
       ];
 
@@ -149,7 +150,7 @@ class VotingForm extends React.Component {
           <div>
             {activeStep === steps.length ? (
               <Typography className={classes.instructions}>
-                All steps completed - you are finished
+                {languageText.finishText}
               </Typography>
             ) : (
               <div>
@@ -160,7 +161,7 @@ class VotingForm extends React.Component {
                     onClick={this.stepBack}
                     className={classes.button}
                   >
-                    Back
+                    {languageText.buttons.back}
                   </Button>
                   <Button
                     variant='contained'
@@ -168,7 +169,10 @@ class VotingForm extends React.Component {
                     onClick={this.stepForward}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                    {activeStep === steps.length - 1
+                      ? languageText.buttons.finish
+                      : languageText.buttons.next
+                    }
                   </Button>
                 </div>
               </div>

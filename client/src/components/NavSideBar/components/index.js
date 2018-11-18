@@ -74,7 +74,7 @@ class NavSideBar extends Component {
 
     render() {
       const {
-        votingsNew, votingsRecent, groups, curGroupId, firstName, lastName,
+        votingsNew, votingsRecent, groups, curGroupId, firstName, lastName, languageText,
       } = this.props;
       const { openRecent, openNew } = this.state;
 
@@ -95,7 +95,7 @@ class NavSideBar extends Component {
           </GroupContainer>
           <NavList>
             <ListItem button onClick={() => this.toggleVotings('new')}>
-              <ItemText inset primary='New votings' />
+              <ItemText inset primary={languageText.new} />
               <Badge color='primary'>
                 {
                   (votingsNew && votingsNew.length > 0)
@@ -110,7 +110,7 @@ class NavSideBar extends Component {
               </List>
             </Collapse>
             <ListItem button onClick={() => this.toggleVotings('recent')}>
-              <ItemText inset primary='Recent votings' />
+              <ItemText inset primary={languageText.recent} />
               {this.chooseArrowForCollapse(openRecent)}
             </ListItem>
             <Collapse in={openRecent} timeout='auto' unmountOnExit>
@@ -120,11 +120,11 @@ class NavSideBar extends Component {
             </Collapse>
             <ListItem button>
               <ItemText inset>
-                <Link to='/app/votings/list'>All voting</Link>
+                <Link to='/app/votings/list'>{languageText.all}</Link>
               </ItemText>
             </ListItem>
             <ListItem button>
-              <ItemText inset primary='Group members' />
+              <ItemText inset primary={languageText.groupMembers} />
             </ListItem>
           </NavList>
         </React.Fragment>

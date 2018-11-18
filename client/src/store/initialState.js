@@ -1,5 +1,7 @@
 import text from '../l10n/text';
 
+const curLang = localStorage.getItem('lang') || 'en';
+
 export default {
   groups: {
     fetchData: {
@@ -34,9 +36,9 @@ export default {
     error: null,
   },
   appText: {
-    lang: 'en',
+    lang: curLang,
     text: {
-      ...text.en,
+      ...text[curLang],
     },
   },
 };

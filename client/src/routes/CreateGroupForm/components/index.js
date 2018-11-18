@@ -77,7 +77,7 @@ class CreateGroupForm extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, languageText } = this.props;
     const {
       name, adminEmail, membersEmails, lastMember, successModalOpened,
     } = this.state;
@@ -91,15 +91,17 @@ class CreateGroupForm extends Component {
               <GroupAdd />
             </Avatar>
             <Typography component='h1' variant='h5'>
-                        Create group
+              {languageText.title}
             </Typography>
             <Typography component='p' variant='p'>
-              Have an account?
-              <Link to='/login'> Sign in!</Link>
+              {languageText.signIn.title}
+              <Link to='/login'>
+                {` ${languageText.signIn.link}`}
+              </Link>
             </Typography>
             <form className={classes.form}>
               <FormControl margin='normal' required fullWidth>
-                <InputLabel htmlFor='name'>Group name</InputLabel>
+                <InputLabel htmlFor='name'>{languageText.group}</InputLabel>
                 <Input
                   id='name'
                   name='name'
@@ -109,7 +111,7 @@ class CreateGroupForm extends Component {
                 />
               </FormControl>
               <FormControl margin='normal' required fullWidth>
-                <InputLabel htmlFor='adminEmail'>Admin email</InputLabel>
+                <InputLabel htmlFor='adminEmail'>{languageText.adminEmail}</InputLabel>
                 <Input
                   name='adminEmail'
                   id='adminEmail'
@@ -119,7 +121,7 @@ class CreateGroupForm extends Component {
                 />
               </FormControl>
               <FormControl className={classes.addMemberControll} margin='normal' required fullWidth>
-                <InputLabel htmlFor='memberEmail'>Member email</InputLabel>
+                <InputLabel htmlFor='memberEmail'>{languageText.memberEmail}</InputLabel>
                 <Input
                   className={classes.memberInput}
                   name='memberEmail'
@@ -132,7 +134,7 @@ class CreateGroupForm extends Component {
                   color='primary'
                   onClick={this.addMember}
                 >
-                                Add member
+                  {languageText.buttons.addMember}
                 </Button>
               </FormControl>
               <Fragment>
@@ -159,7 +161,7 @@ class CreateGroupForm extends Component {
                 className={classes.submit}
                 onClick={this.createGroup}
               >
-                            Create
+                {languageText.buttons.createGroup}
               </Button>
             </form>
           </Paper>

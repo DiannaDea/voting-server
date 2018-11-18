@@ -6,7 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const CandidateModal = ({ open, handleClose, candidate }) => {
+const CandidateModal = ({
+  open, handleClose, candidate, languageText,
+}) => {
   return (
     <Dialog
       open={open}
@@ -31,7 +33,7 @@ const CandidateModal = ({ open, handleClose, candidate }) => {
           onClick={handleClose}
           color='primary'
         >
-            Close
+          {languageText.buttons.closeModal}
         </Button>
       </DialogActions>
     </Dialog>

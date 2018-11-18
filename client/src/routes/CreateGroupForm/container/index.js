@@ -6,6 +6,7 @@ const mapStateToProps = state => ({
   groupId: (state.groups.fetchData.lastGroup)
     ? state.groups.fetchData.lastGroup._id
     : null,
+  languageText: state.language.text.createGroup,
 });
 
 const mapDispatchToProps = dispatch => ({

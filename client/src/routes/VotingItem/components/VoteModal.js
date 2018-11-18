@@ -76,7 +76,7 @@ class VoteModal extends Component {
 
   sendVote = () => {
     const {
-      sendVote, votingId, userId, handleClose,
+      sendVote, votingId, userId, handleClose, languageText,
     } = this.props;
     const { coefficientValues, chosenCandidate } = this.state;
 
@@ -91,7 +91,7 @@ class VoteModal extends Component {
 
   render() {
     const {
-      open, handleClose, candidates, coefficients,
+      open, handleClose, candidates, coefficients, languageText,
     } = this.props;
     const { chosenCandidate } = this.state;
 
@@ -100,7 +100,7 @@ class VoteModal extends Component {
         {
           <FormControl component='fieldset'>
             <DialogContentText>
-              Choose best candidate from the following list
+              {languageText.vote.candidateText}
             </DialogContentText>
             <RadioGroup
               aria-label='Gender'
@@ -134,7 +134,7 @@ class VoteModal extends Component {
         aria-describedby='alert-dialog-description'
       >
         <Fragment>
-          <DialogTitle>HI</DialogTitle>
+          <DialogTitle>{languageText.vote.voteTitle}</DialogTitle>
           <DialogContent>
             <Grid container spacing={0}>
               <Grid item md={6}>
@@ -143,7 +143,7 @@ class VoteModal extends Component {
               <Grid item md={6}>
                 <Fragment>
                   <DialogContentText>
-              Please answer the questions to calculate you vote weight!
+                    {languageText.vote.weightText}
                   </DialogContentText>
                   {
                     (coefficients && coefficients.length)
@@ -152,7 +152,7 @@ class VoteModal extends Component {
                           <AnswerContainer key={coeff._id}>
                             <p>{coeff.question}</p>
                             <AnswerInput
-                              placeholder='Enter your answer'
+                              placeholder={languageText.vote.enterAnswer}
                               inputProps={{
                                 'aria-label': 'Description',
                               }}
@@ -174,14 +174,14 @@ class VoteModal extends Component {
             onClick={handleClose}
             color='primary'
           >
-                Close
+            {languageText.buttons.closeModal}
           </Button>
           <Button
             variant='contained'
             color='primary'
             onClick={this.sendVote}
           >
-              Vote
+            {languageText.buttons.vote}
           </Button>
         </DialogActions>
       </Dialog>

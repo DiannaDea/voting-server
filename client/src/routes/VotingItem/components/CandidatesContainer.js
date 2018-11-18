@@ -40,7 +40,7 @@ class CandidatesContainer extends Component {
     };
 
     render() {
-      const { candidates } = this.props;
+      const { candidates, languageText } = this.props;
       const { openInfoModal, curCandidate } = this.state;
 
       return (
@@ -67,6 +67,7 @@ class CandidatesContainer extends Component {
               : []
           }
           <CandidateModal
+            languageText={languageText}
             open={openInfoModal}
             handleClose={this.handleClose}
             candidate={curCandidate}

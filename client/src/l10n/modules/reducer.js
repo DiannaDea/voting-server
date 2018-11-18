@@ -3,9 +3,14 @@ import {
 } from './types';
 import text from '../text';
 
+console.log('HEHHE', text);
+
 export default (state, action) => ({
   [CHANGE_APP_LANGUAGE]: () => ({
     ...state,
-    ...text[action.payload.lang],
+    lang: action.payload.lang,
+    text: {
+      ...text[action.payload.lang],
+    },
   }),
 });

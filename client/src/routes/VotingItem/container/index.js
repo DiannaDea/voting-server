@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
   voting: state.votings.fetchData.lastVoting.data,
   candidates: state.votings.fetchData.lastVoting.candidates,
   userId: state.user.fetchData.personalInfo._id,
+  languageText: state.language.text.votingItem,
 });
 
 const mapDispatchToProps = dispatch => ({

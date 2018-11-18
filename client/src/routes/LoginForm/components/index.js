@@ -6,12 +6,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { Redirect, Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import SelectLang from '../../../components/SelectLang';
 
 const styles = theme => ({
   main: {
@@ -64,7 +63,7 @@ class LoginForm extends Component {
     };
 
     render() {
-      const { signIn, classes } = this.props;
+      const { signIn, classes, languageText } = this.props;
       const { email, password } = this.state;
 
       return (
@@ -74,21 +73,24 @@ class LoginForm extends Component {
               ? <Redirect to='/app' />
               : (
                 <main className={classes.main}>
+                  <SelectLang />
                   <CssBaseline />
                   <Paper className={classes.paper}>
                     <Avatar className={classes.avatar}>
                       <LockIcon />
                     </Avatar>
                     <Typography component='h1' variant='h5'>
-                     Sign in
+                      {languageText.title}
                     </Typography>
                     <Typography component='p' variant='p'>
-                      Want to create group?
-                      <Link to='/create/group'> Create now!</Link>
+                      {languageText.createGroup.title}
+                      <Link to='/create/group'>
+                        {` ${languageText.createGroup.link}`}
+                      </Link>
                     </Typography>
                     <form className={classes.form}>
                       <FormControl margin='normal' required fullWidth>
-                        <InputLabel htmlFor='email'>Email Address</InputLabel>
+                        <InputLabel htmlFor='email'>{languageText.email}</InputLabel>
                         <Input
                           id='email'
                           name='email'
@@ -98,7 +100,7 @@ class LoginForm extends Component {
                         />
                       </FormControl>
                       <FormControl margin='normal' required fullWidth>
-                        <InputLabel htmlFor='password'>Password</InputLabel>
+                        <InputLabel htmlFor='password'>{languageText.password}</InputLabel>
                         <Input
                           name='password'
                           type='password'
@@ -114,7 +116,7 @@ class LoginForm extends Component {
                         className={classes.submit}
                         onClick={() => signIn({ email, password })}
                       >
-                       Sign in
+                        {languageText.buttonSignIn}
                       </Button>
                     </form>
                   </Paper>

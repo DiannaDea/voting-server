@@ -79,7 +79,7 @@ class VotingItem extends Component {
 
   render() {
     const {
-      voting, candidates, firstName, lastName, sendVote, userId,
+      voting, candidates, firstName, lastName, sendVote, userId, languageText,
     } = this.props;
     const { isVoteModalOpen } = this.state;
 
@@ -99,32 +99,32 @@ class VotingItem extends Component {
             color='primary'
             onClick={() => this.toggleVoteModal(true)}
           >
-          Vote
+            {languageText.buttons.vote}
           </Button>
         </VotingInfoGroup>
         <VotingRow>
           <VotingInputGroup>
             <VotingInput
-              label='Topic'
+              label={languageText.topic}
               value={voting.topic}
               onChange={this.blockChangeInputs}
             />
           </VotingInputGroup>
           <VotingInputGroup>
             <VotingInput
-              label='Date start'
+              label={languageText.votingStart}
               value={dateFormat(voting.dateStart, 'mmmm dS, yyyy, h:MM:ss')}
               onChange={this.blockChangeInputs}
             />
             <VotingInput
-              label='Date end'
+              label={languageText.votingEnd}
               value={dateFormat(voting.dateEnd, 'mmmm dS, yyyy, h:MM:ss')}
               onChange={this.blockChangeInputs}
             />
           </VotingInputGroup>
           <VotingInputGroup>
             <VotingInput
-              label='Voters percent'
+              label={languageText.votersPercent}
               value={`${voting.votersPercent} %`}
               onChange={this.blockChangeInputs}
             />
@@ -133,7 +133,7 @@ class VotingItem extends Component {
         <InformationGroup>
           {
             (candidates && candidates.length) ? (
-              <CandidatesContainer candidates={candidates} />
+              <CandidatesContainer languageText={languageText} candidates={candidates} />
             ) : null
           }
           {
@@ -144,11 +144,12 @@ class VotingItem extends Component {
         </InformationGroup>
       </Fragment>
     ) : null;
-
+        
     return (
       <Fragment>
         {votingForm}
         <VoteModal
+          languageText={languageText}
           votingId={(voting) ? voting._id : ''}
           userId={userId}
           sendVote={sendVote}

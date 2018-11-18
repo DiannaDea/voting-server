@@ -24,8 +24,10 @@ class GroupSideBar extends Component {
 
 
   render() {
-    const { groups, curGroupId, history } = this.props;
-    
+    const {
+      groups, curGroupId, history, languageText,
+    } = this.props;
+
     return (
       <GroupSideBarContainer>
         {
@@ -45,6 +47,7 @@ class GroupSideBar extends Component {
           variant='fab'
           color='primary'
           aria-label='Add'
+          title={languageText.createGroup}
           onClick={() => history.push('/create/group')}
         >
           <AddIcon />

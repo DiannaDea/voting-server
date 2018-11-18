@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   groups: state.groups.fetchData.all || [],
   firstName: state.user.fetchData.personalInfo.firstName,
   lastName: state.user.fetchData.personalInfo.lastName,
+  languageText: state.language.text.navSideBar,
 });
 
 const mapDispatchToProps = dispatch => ({

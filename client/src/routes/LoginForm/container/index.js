@@ -4,6 +4,7 @@ import { signInInit, getUserInit } from '../modules/actions';
 
 const mapStateToProps = state => ({
   token: state.user.fetchData.token,
+  languageText: state.language.text.signIn,
 });
 
 const mapDispatchToProps = dispatch => ({
