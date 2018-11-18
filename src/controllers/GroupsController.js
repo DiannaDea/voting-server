@@ -23,7 +23,8 @@ export default class GroupsController {
             });
 
             const emails = [adminEmail, ...membersEmails];
-
+            console.log('EMAIL START', emailStart);
+            
             await Promise.all(emails.map(async (email) => {
                 let linkToJoin = `${emailStart}/auth/signup?group=${group._id}&email=${email}`;
 
