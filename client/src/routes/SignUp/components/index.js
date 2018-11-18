@@ -110,7 +110,7 @@ class SignUp extends Component {
                       onChangeHandler={this.handleChange}
                     />
                     <FormInput
-                      fieldLabelName={languageText.password}
+                      fieldLabelName={languageText.firstName}
                       fieldName='firstName'
                       fieldValue={firstName}
                       onChangeHandler={this.handleChange}
