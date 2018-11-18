@@ -36,17 +36,17 @@ Content-Type: application/json
 
 ### Get voting candidates
 
-GET http://localhost:5000/api/votings/5bcc764672eeb941e571ec1e/candidates
+GET http://localhost:5000/api/votings/5bf152a50313505fd97aa304/candidates
 
 ### Vote
 
-POST http://localhost:5000/api/votings/5bd47a639d1e493e1ba095f7/vote
+POST http://localhost:5000/api/votings/5bf152a50313505fd97aa304/vote
 Content-Type: application/json
 
 {
-  "userId": "5bc8a8599c3d232278530a47",
-  "candidateId": "5bcc76e572eeb941e571ec21",
-  "coefficientValues": [{"_id": 1, "value": 78}, {"_id": 2, "value": 45}, {"_id": 3, "value": 98}]
+  "userId": "5bc8a8649c3d232278530a48",
+  "candidateId": "5bf152c30313505fd97aa305",
+  "coefficientValues": [{"_id": 1, "value": 25}, {"_id": 2, "value": 45}, {"_id": 3, "value": 14}]
 }
 
 ### Get voting results

@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import TopicForm from './TopicForm';
 import ArrayOfObjects from './ArrayOfObjects';
-import { lang } from 'moment';
 
 const styles = theme => ({
   root: {

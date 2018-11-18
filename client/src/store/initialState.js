@@ -41,4 +41,8 @@ export default {
       ...text[curLang],
     },
   },
+  votingResults: {
+    results: {},
+    error: null,
+  },
 };

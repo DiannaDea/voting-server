@@ -9,9 +9,6 @@ import Logout from '@material-ui/icons/ExitToApp';
 import ActivityIcon from '@material-ui/icons/QueryBuilder';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import SelectLang from '../../SelectLang';
 
 const ControllerPanel = styled.div`
     text-align: right;

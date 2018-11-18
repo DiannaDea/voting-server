@@ -76,7 +76,7 @@ class VoteModal extends Component {
 
   sendVote = () => {
     const {
-      sendVote, votingId, userId, handleClose, languageText,
+      sendVote, votingId, userId, handleClose,
     } = this.props;
     const { coefficientValues, chosenCandidate } = this.state;
 
