@@ -10,7 +10,7 @@ import UserGroup from '../models/UserGroup';
 import User from '../models/User';
 
 const groupsError = errors.groups;
-const { host, port } = config.app;
+const { emailStart } = config.mail;
 
 export default class GroupsController {
     static async create(ctx) {
@@ -25,7 +25,7 @@ export default class GroupsController {
             const emails = [adminEmail, ...membersEmails];
 
             await Promise.all(emails.map(async (email) => {
-                let linkToJoin = `http://${host}:${port}/auth/signup?group=${group._id}&email=${email}`;
+                let linkToJoin = `${emailStart}/auth/signup?group=${group._id}&email=${email}`;
 
                 if (email === adminEmail) {
                     linkToJoin += '&isAdmin=true';
