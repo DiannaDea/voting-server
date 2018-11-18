@@ -14,4 +14,6 @@ Content-Type: application/json
 
 GET http://localhost:5000/api/groups/5bcc4ccb09ee131efeac922e/users/5bc8a8599c3d232278530a47/votings?state=recent
 
-###
+### Get users in group
+
+GET http://localhost:5000/api/groups/5bc8a83e9c3d232278530a46/users

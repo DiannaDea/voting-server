@@ -21,6 +21,16 @@ groupsRouter.route({
     handler: GroupsController.create,
 });
 
+groupsRouter.route({
+    method: 'get',
+    path: '/:groupId/users',
+    validate: {
+        params: {
+            groupId: Joi.string().required(),
+        },
+    },
+    handler: GroupsController.getUsers,
+});
 
 groupsRouter.route({
     method: 'get',

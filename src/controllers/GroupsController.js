@@ -6,6 +6,8 @@ import MailService from '../services/mail';
 import errors from '../errors';
 import Voting from '../models/Voting';
 import Vote from '../models/Vote';
+import UserGroup from '../models/UserGroup';
+import User from '../models/User';
 
 const groupsError = errors.groups;
 const { host, port } = config.app;
@@ -72,6 +74,25 @@ export default class GroupsController {
 
             return (newVotingsFiltered.length)
                 ? ctx.send(200, newVotingsFiltered)
+                : ctx.send(204);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
+    static async getUsers(ctx) {
+        const { groupId } = ctx.params;
+
+        try {
+            const userIds = await UserGroup.find({ groupId }, 'userId');
+            const users = User.find({
+                _id: {
+                    $in: userIds,
+                },
+            });
+
+            return (users && users.length)
+                ? ctx.send(200, users)
                 : ctx.send(204);
         } catch (error) {
             return ctx.send(500, error);
