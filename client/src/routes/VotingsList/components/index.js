@@ -23,7 +23,7 @@ class VotingsList extends Component {
 
   render() {
     const {
-      votingsNew, votingsRecent, getResults, votingResults,
+      votingsNew, votingsRecent, getResults, votingResults, languageText,
     } = this.props;
     const { isResultsModalOpen, curVoting } = this.state;
 
@@ -55,7 +55,7 @@ class VotingsList extends Component {
                             color='primary'
                             onClick={() => this.toggleVoteModal(true, _id)}
                           >
-                            Results
+                            {languageText.buttons.getResults}
                           </Button>
                         )
                         : null
@@ -67,6 +67,7 @@ class VotingsList extends Component {
           }
         </List>
         <ResultsModal
+          languageText={languageText}
           votingResults={votingResults}
           getResults={getResults}
           votingId={curVoting}

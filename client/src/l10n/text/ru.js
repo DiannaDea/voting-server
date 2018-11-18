@@ -82,4 +82,23 @@ export default {
       createGroup: 'Создать группу',
     },
   },
+  listVotings: {
+    buttons: {
+      getResults: 'Результаты',
+      close: 'Закрыть',
+    },
+    resultsTitle: 'Результаты голосования',
+    winner: 'Победитель',
+    votesValue: 'Значение голосов',
+    votesCount: 'Количество голосов',
+  },
+  signUp: {
+    title: 'Регистрация',
+    email: 'Электронная почта',
+    password: 'Пароль',
+    firstName: 'Имя',
+    lastName: 'Фамилия',
+    nickName: 'Имя пользователя',
+    btnSignUp: 'Зарегистрироваться',
+  },
 };

@@ -82,4 +82,23 @@ export default {
       createGroup: 'Create group',
     },
   },
+  listVotings: {
+    buttons: {
+      getResults: 'Results',
+      close: 'Close',
+    },
+    resultsTitle: 'Voting results',
+    winner: 'Winner',
+    votesValue: 'Votes value',
+    votesCount: 'Votes count',
+  },
+  signUp: {
+    title: 'Sign up',
+    email: 'Email',
+    password: 'Password',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    nickName: 'Nickname',
+    btnSignUp: 'Sign up',
+  },
 };

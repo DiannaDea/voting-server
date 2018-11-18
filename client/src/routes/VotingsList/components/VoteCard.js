@@ -20,13 +20,13 @@ const styles = {
 };
 
 const WinnerCard = styled(Card)`
-  width: 200px;
+  width: 250px;
   margin-top: ${props => (props.winner ? '0px' : '50px')};
 `;
 
 
 function SimpleCard(props) {
-  const { classes, result } = props;
+  const { classes, result, languageText } = props;
 
   return (
     <WinnerCard winner={result.winner || false}>
@@ -35,7 +35,7 @@ function SimpleCard(props) {
           (result.winner)
             ? (
               <Typography className={classes.title} color='textSecondary' gutterBottom>
-                Winner!!!
+                {`${languageText.winner}!!!`}
               </Typography>
             )
             : null
@@ -47,10 +47,10 @@ function SimpleCard(props) {
           {result.candidate.description}
         </Typography>
         <Typography component='p'>
-          {`Votes value: ${result.votesValue}`}
+          {`${languageText.votesValue}: ${result.votesValue}`}
         </Typography>
         <Typography component='p'>
-          {`Votes count: ${result.votesCount}`}
+          {`${languageText.votesCount}: ${result.votesCount}`}
         </Typography>
       </CardContent>
     </WinnerCard>

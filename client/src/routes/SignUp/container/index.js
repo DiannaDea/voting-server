@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   error: state.joinGroup.error,
   personalInfo: state.user.fetchData.personalInfo,
   hasJoined: state.joinGroup.status,
+  languageText: state.language.text.signUp,
 });
 
 const mapDispatchToProps = dispatch => ({

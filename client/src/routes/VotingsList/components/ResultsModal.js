@@ -36,7 +36,9 @@ class ResultsModal extends Component {
   }
 
   render() {
-    const { open, handleClose, votingResults } = this.props;
+    const {
+      open, handleClose, votingResults, languageText,
+    } = this.props;
     const resultsOrdered = (Object.keys(votingResults).length)
       ? this.reorderResults(votingResults.results)
       : [];
@@ -48,7 +50,7 @@ class ResultsModal extends Component {
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'>Diana</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>{languageText.resultsTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
             {
@@ -58,7 +60,11 @@ class ResultsModal extends Component {
                     {
                       resultsOrdered.map((result) => {
                         return (
-                          <VoteCard key={result.candidate._id} result={result} />
+                          <VoteCard
+                            languageText={languageText}
+                            key={result.candidate._id}
+                            result={result}
+                          />
                         );
                       })
                     }
@@ -73,7 +79,7 @@ class ResultsModal extends Component {
             onClick={handleClose}
             color='primary'
           >
-            Close
+            {languageText.buttons.close}
           </Button>
         </DialogActions>
       </Dialog>

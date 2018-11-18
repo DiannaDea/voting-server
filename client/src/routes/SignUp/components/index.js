@@ -76,7 +76,7 @@ class SignUp extends Component {
 
   render() {
     const {
-      error, user, classes,
+      error, user, classes, languageText,
     } = this.props;
     const {
       email, password, firstName, lastName, nickname,
@@ -95,34 +95,34 @@ class SignUp extends Component {
                     <LockIcon />
                   </Avatar>
                   <Typography component='h1' variant='h5'>
-                     Sign up
+                    {languageText.title}
                   </Typography>
                   <form className={classes.form}>
                     <FormInput
-                      fieldLabelName='Email'
+                      fieldLabelName={languageText.email}
                       fieldName='email'
                       fieldValue={email}
                     />
                     <FormInput
-                      fieldLabelName='Password'
+                      fieldLabelName={languageText.password}
                       fieldName='password'
                       fieldValue={password}
                       onChangeHandler={this.handleChange}
                     />
                     <FormInput
-                      fieldLabelName='First name'
+                      fieldLabelName={languageText.password}
                       fieldName='firstName'
                       fieldValue={firstName}
                       onChangeHandler={this.handleChange}
                     />
                     <FormInput
-                      fieldLabelName='Last name'
+                      fieldLabelName={languageText.lastName}
                       fieldName='lastName'
                       fieldValue={lastName}
                       onChangeHandler={this.handleChange}
                     />
                     <FormInput
-                      fieldLabelName='Nickname'
+                      fieldLabelName={languageText.nickName}
                       fieldName='nickname'
                       fieldValue={nickname}
                       onChangeHandler={this.handleChange}
@@ -134,7 +134,7 @@ class SignUp extends Component {
                       className={classes.submit}
                       onClick={this.signUp}
                     >
-                       Sign up
+                      {languageText.btnSignUp}
                     </Button>
                   </form>
                 </Paper>
