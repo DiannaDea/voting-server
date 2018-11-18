@@ -29,43 +29,48 @@ class VotingsList extends Component {
 
     return (
       <Fragment>
-        <List>
-          {
-            (votingsNew.length && votingsRecent.length)
-              ? ([
-                ...votingsNew,
-                ...votingsRecent,
-              ].map(({
-                _id, topic, dateStart, dateEnd, status,
-              }) => {
-                const dateFrom = moment(dateStart).format('MMMM Do YYYY');
-                const dateTo = moment(dateEnd).format('MMMM Do YYYY');
+        <h5>{languageText.title}</h5>
+        {
+          (!votingsNew.length && !votingsRecent.length)
+            ? <p>{languageText.noVotings}</p>
+            : (
+              <List>
+                {
+                  ([
+                    ...votingsNew,
+                    ...votingsRecent,
+                  ].map(({
+                    _id, topic, dateStart, dateEnd, status,
+                  }) => {
+                    const dateFrom = moment(dateStart).format('MMMM Do YYYY');
+                    const dateTo = moment(dateEnd).format('MMMM Do YYYY');
 
-                return (
-                  <ListItem key={_id}>
-                    <Avatar>
-                      <ImageIcon />
-                    </Avatar>
-                    <ListItemText primary={topic} secondary={`${dateFrom} - ${dateTo}`} />
-                    {
-                      (status === 'finished')
-                        ? (
-                          <Button
-                            variant='contained'
-                            color='primary'
-                            onClick={() => this.toggleVoteModal(true, _id)}
-                          >
-                            {languageText.buttons.getResults}
-                          </Button>
-                        )
-                        : null
-                    }
-                  </ListItem>
-                );
-              }))
-              : null
-          }
-        </List>
+                    return (
+                      <ListItem key={_id}>
+                        <Avatar>
+                          <ImageIcon />
+                        </Avatar>
+                        <ListItemText primary={topic} secondary={`${dateFrom} - ${dateTo}`} />
+                        {
+                          (status === 'finished')
+                            ? (
+                              <Button
+                                variant='contained'
+                                color='primary'
+                                onClick={() => this.toggleVoteModal(true, _id)}
+                              >
+                                {languageText.buttons.getResults}
+                              </Button>
+                            )
+                            : null
+                        }
+                      </ListItem>
+                    );
+                  }))
+                }
+              </List>
+            )
+        }
         <ResultsModal
           languageText={languageText}
           votingResults={votingResults}

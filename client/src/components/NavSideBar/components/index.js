@@ -124,7 +124,9 @@ class NavSideBar extends Component {
               </ItemText>
             </ListItem>
             <ListItem button>
-              <ItemText inset primary={languageText.groupMembers} />
+              <ItemText inset>
+                <Link to={`/app/groups/${curGroupId}/users`}>{languageText.groupMembers}</Link>
+              </ItemText>
             </ListItem>
           </NavList>
         </React.Fragment>

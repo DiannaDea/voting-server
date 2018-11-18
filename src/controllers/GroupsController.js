@@ -84,8 +84,9 @@ export default class GroupsController {
         const { groupId } = ctx.params;
 
         try {
-            const userIds = await UserGroup.find({ groupId }, 'userId');
-            const users = User.find({
+            const userGroups = await UserGroup.find({ groupId }, 'userId');
+            const userIds = userGroups.map(userGroup => userGroup.userId);
+            const users = await User.find({
                 _id: {
                     $in: userIds,
                 },

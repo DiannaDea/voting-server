@@ -83,6 +83,8 @@ export default {
     },
   },
   listVotings: {
+    title: 'Follow your votings resuls',
+    noVotings: 'Please create a voting in your group',
     buttons: {
       getResults: 'Results',
       close: 'Close',
@@ -100,5 +102,9 @@ export default {
     lastName: 'Last Name',
     nickName: 'Nickname',
     btnSignUp: 'Sign up',
+  },
+  groupMembers: {
+    title: 'Get in touch with you group memebers',
+    noMembers: 'Please add members to you group',
   },
 };

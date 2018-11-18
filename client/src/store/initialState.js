@@ -8,6 +8,7 @@ export default {
       all: [],
       curGroupId: '',
       lastGroup: {},
+      curGroupMembers: [],
     },
     error: null,
   },
