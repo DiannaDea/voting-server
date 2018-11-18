@@ -80,6 +80,11 @@ export default {
     buttons: {
       addMember: 'Добавить',
       createGroup: 'Создать группу',
+      close: 'Закрыть',
+    },
+    modal: {
+      title: 'Группа успешно создана!',
+      description: 'Проверьте вашу электронную почту для завершения создания группы. Используйте ссылку в письме для регистрации, если у вас нет аккаунта или для подключения к новой группе',
     },
   },
   listVotings: {
@@ -106,5 +111,15 @@ export default {
   groupMembers: {
     title: 'Поддерживай контакт со своими согруппниками',
     noMembers: 'Пожалуйста добавьте участников в вашу группу',
+  },
+  notifications: {
+    errorTitle: 'Ошибка!',
+    successTitle: 'Операция успешна!',
+    join: {
+      success: 'Successfully joined group',
+    },
+    signUp: {
+      success: 'Successfylly created account',
+    },
   },
 };

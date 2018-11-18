@@ -167,6 +167,7 @@ class CreateGroupForm extends Component {
           </Paper>
         </main>
         <PopupSuccess
+          languageText={languageText}
           open={successModalOpened}
           handleClose={this.handleClose}
         />

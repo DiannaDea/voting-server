@@ -80,6 +80,11 @@ export default {
     buttons: {
       addMember: 'Add member',
       createGroup: 'Create group',
+      close: 'Close',
+    },
+    modal: {
+      title: 'Successfully created group!',
+      description: 'Check your email to finish creating group. Use link in email to sign up if you don\'t have account and to join your group!',
     },
   },
   listVotings: {
@@ -106,5 +111,15 @@ export default {
   groupMembers: {
     title: 'Get in touch with you group memebers',
     noMembers: 'Please add members to you group',
+  },
+  notifications: {
+    errorTitle: 'Error!',
+    successTitle: 'Success!',
+    join: {
+      success: 'Successfully joined group',
+    },
+    signUp: {
+      success: 'Successfylly created account',
+    },
   },
 };

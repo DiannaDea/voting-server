@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PopupSuccess = ({ open, handleClose }) => {
+const PopupSuccess = ({ open, handleClose, languageText }) => {
   return (
     <Dialog
       open={open}
@@ -15,10 +15,10 @@ const PopupSuccess = ({ open, handleClose }) => {
       aria-describedby='alert-dialog-description'
     >
       <Fragment>
-        <DialogTitle id='alert-dialog-title'>Successfully created group!</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>{languageText.modal.title}</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            Check your email to finish creating group. Use link in email to sign up if you don't have account and to join your group!
+            {languageText.modal.description}
           </DialogContentText>
         </DialogContent>
       </Fragment>
@@ -27,7 +27,7 @@ const PopupSuccess = ({ open, handleClose }) => {
           onClick={handleClose}
           color='primary'
         >
-                    Close
+          {languageText.buttons.close}
         </Button>
       </DialogActions>
     </Dialog>

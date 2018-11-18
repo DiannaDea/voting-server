@@ -1,11 +1,17 @@
 import axios from 'axios/index';
 import { put, call } from 'redux-saga/effects';
+import { NotificationManager } from 'react-notifications';
 import { BASE_URL } from '../../constants/index';
+
+import text from '../../l10n/text';
 
 import {
   addCandidatesSuccess,
   addCandidatesError,
 } from '../../routes/VotingForm/modules/actions';
+
+const curLang = localStorage.getItem('lang');
+const { notifications } = text[curLang];
 
 export default function* addCandidates({ payload }) {
   try {
@@ -19,8 +25,10 @@ export default function* addCandidates({ payload }) {
       ? null
       : candidates.data;
 
+    NotificationManager.success('', notifications.successTitle);
     yield put(addCandidatesSuccess(candidatesRes));
   } catch (error) {
+    NotificationManager.error(error.response.data.message, notifications.errorTitle);
     yield put(addCandidatesError(error));
   }
 }
