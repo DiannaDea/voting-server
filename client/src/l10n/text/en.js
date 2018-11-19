@@ -123,4 +123,9 @@ export default {
     },
   },
   welcome: 'Welcome to VoteUp!',
+  activity: {
+    title: 'Look at your activity',
+    single: 'geoposition',
+    plural: 'geopositions',
+  },
 };

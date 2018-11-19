@@ -123,4 +123,9 @@ export default {
     },
   },
   welcome: 'Добро пожаловать в VoteUp!',
+  activity: {
+    title: 'Следите за своей активностью',
+    single: 'геопозиция',
+    plural: 'геопозиций',
+  },
 };

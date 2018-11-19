@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Logout from '@material-ui/icons/ExitToApp';
 import ActivityIcon from '@material-ui/icons/QueryBuilder';
 import styled from 'styled-components';
@@ -48,10 +47,9 @@ class Header extends Component {
                 <Link to='/app/create/votings'>{languageText.createVoting}</Link>
               </ButtonCreateVoting>
               <IconButton title={languageText.activityTitle} color='inherit'>
-                <ActivityIcon />
-              </IconButton>
-              <IconButton title={languageText.accountTitle} color='inherit'>
-                <AccountCircle />
+                <Link to='/app/activity'>
+                  <ActivityIcon />
+                </Link>
               </IconButton>
               <IconButton
                 title={languageText.logoutTitle}

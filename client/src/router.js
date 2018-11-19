@@ -11,6 +11,7 @@ import CreateGroupForm from './routes/CreateGroupForm';
 import SignUp from './routes/SignUp';
 import VotingsList from './routes/VotingsList';
 import GroupMembers from './routes/GroupMembers';
+import ActivityContainer from './routes/Activity';
 
 // FIXME: refactor create voting route url
 export const bodyRoutes = [
@@ -34,6 +35,10 @@ export const bodyRoutes = [
   {
     path: '/app/groups/:id/users',
     component: GroupMembers,
+  },
+  {
+    path: '/app/activity',
+    component: ActivityContainer,
   },
 ];
 
