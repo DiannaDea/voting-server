@@ -11,6 +11,6 @@
         "secret": "TOKEN_SECRET"
     },
     "mail": {
-        "password": "EMAIL_PASSWORD",
+        "password": "EMAIL_PASSWORD"
     }
 }
