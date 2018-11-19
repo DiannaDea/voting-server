@@ -12,6 +12,5 @@
     },
     "mail": {
         "password": "EMAIL_PASSWORD",
-        "emailStart": "EMAIL_START"
     }
 }
