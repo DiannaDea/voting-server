@@ -122,4 +122,5 @@ export default {
       success: 'Successfylly created account',
     },
   },
+  welcome: 'Добро пожаловать в VoteUp!',
 };
