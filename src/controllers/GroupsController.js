@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import config from 'config';
 
 import Group from '../models/Group';
 import MailService from '../services/mail';
@@ -10,7 +9,6 @@ import UserGroup from '../models/UserGroup';
 import User from '../models/User';
 
 const groupsError = errors.groups;
-const { emailStart } = config.mail;
 
 export default class GroupsController {
     static async create(ctx) {
@@ -23,10 +21,10 @@ export default class GroupsController {
             });
 
             const emails = [adminEmail, ...membersEmails];
-            console.log('EMAIL START', emailStart);
 
             await Promise.all(emails.map(async (email) => {
-                let linkToJoin = `https://voting-app-university.herokuapp.com/auth/signup?group=${group._id}&email=${email}`;
+                const emailStart = 'https://voting-app-university.herokuapp.com';
+                let linkToJoin = `${emailStart}/auth/signup?group=${group._id}&email=${email}`;
 
                 if (email === adminEmail) {
                     linkToJoin += '&isAdmin=true';

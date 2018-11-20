@@ -6,7 +6,7 @@ export const RootContainer = styled.div`
 `;
 
 export const SideBar = styled(Grid)`
-  height: 100vh;
+  height: 120vh;
 `;
 
 export const HeaderContainer = styled(Grid)`

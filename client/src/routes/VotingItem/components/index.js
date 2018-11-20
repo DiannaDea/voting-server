@@ -94,13 +94,19 @@ class VotingItem extends Component {
             }
           </VotingBadge>
           <VotingBadge isStatus>{voting.status}</VotingBadge>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={() => this.toggleVoteModal(true)}
-          >
-            {languageText.buttons.vote}
-          </Button>
+          {
+            (voting.status === 'pending')
+              ? (
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={() => this.toggleVoteModal(true)}
+                >
+                  {languageText.buttons.vote}
+                </Button>
+              )
+              : null
+          }
         </VotingInfoGroup>
         <VotingRow>
           <VotingInputGroup>
@@ -144,7 +150,7 @@ class VotingItem extends Component {
         </InformationGroup>
       </Fragment>
     ) : null;
-        
+
     return (
       <Fragment>
         {votingForm}

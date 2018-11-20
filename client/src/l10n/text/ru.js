@@ -14,7 +14,7 @@ export default {
         question: 'Вопрос',
       },
       candidatesForm: {
-        name: 'ФИО',
+        name: 'Название',
         description: 'Описание',
       },
     },
