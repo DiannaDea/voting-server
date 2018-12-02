@@ -38,6 +38,7 @@ export default {
     recent: 'Недавние голосования',
     all: 'Все голосования',
     groupMembers: 'Участники группы',
+    votingsAvailiable: 'Доступны новые голосования!',
   },
   groupSideBar: {
     createGroup: 'Создать группу',
@@ -124,8 +125,9 @@ export default {
   },
   welcome: 'Добро пожаловать в VoteUp!',
   activity: {
-    title: 'Следите за своей активностью',
-    single: 'геопозиция',
-    plural: 'геопозиций',
+    loginActivity: 'Активность',
+    votesActivity: 'Голосования',
+    loginHeaders: ['Дата', 'IP', 'Браузер', 'ОС'],
+    votesHeaders: ['Дата', 'Тема голосования', 'Кандидат'],
   },
 };

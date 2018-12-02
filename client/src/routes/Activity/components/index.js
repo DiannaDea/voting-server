@@ -1,94 +1,97 @@
-import React, { Fragment, Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import SwipeableViews from 'react-swipeable-views';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ListItem from '@material-ui/core/ListItem';
-import Avatar from '@material-ui/core/Avatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import styled from 'styled-components';
-import ImageIcon from '../../../../node_modules/@material-ui/icons/AvTimer';
-import activityList from '../../../constants/activity';
 
-const ActivityRoot = styled.div`
-  width: 100%;
-  height: 80vh !important;
-  overflow-y: scroll
-`;
+import LoginActivity from './LoginActivity';
+import VotesActivity from './VotesActivity';
+
+function TabContainer({ children, dir }) {
+  return (
+    <Typography component='div' dir={dir} style={{ padding: 8 * 3 }}>
+      {children}
+    </Typography>
+  );
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  dir: PropTypes.string.isRequired,
+};
 
 const styles = theme => ({
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 800,
   },
 });
 
-class ActivityContainer extends Component {
-    state = {
-      expanded: null,
-    };
+class ActivityContainer extends React.Component {
+  state = {
+    value: 0,
+  };
 
-    handleChange = panel => (event, expanded) => {
-      this.setState({
-        expanded: expanded ? panel : false,
-      });
-    };
-
-    render() {
-      const { classes, email, languageText } = this.props;
-      const { expanded } = this.state;
-
-      return (
-        <ActivityRoot>
-          <h5>{languageText.title}</h5>
-          {
-            (email && email === 'dianababurina74@gmail.com')
-              ? activityList.map((activity, index) => {
-                const geoCountStr = (activity.timePeriods.length > 1) ? languageText.plural : languageText.single;
-
-                return (
-                  <ExpansionPanel expanded={expanded === `panel${index}`} onChange={this.handleChange(`panel${index}`)}>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                      <Typography className={classes.heading}>{activity.place}</Typography>
-                      <Typography className={classes.secondaryHeading}>{`${activity.timePeriods.length} ${geoCountStr}, ${activity.dateFrom}`}</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                      <List>
-                        {
-                          activity.timePeriods.map(timePeriod => (
-                            <Fragment>
-                              <ListItem>
-                                <Avatar>
-                                  <ImageIcon />
-                                </Avatar>
-                                <ListItemText primary={timePeriod.period} secondary={`${timePeriod.dateFrom} — ${timePeriod.dateTo}`} />
-                              </ListItem>
-                              { (index !== activity.timePeriods.length - 1) ? (
-                                <Divider inset component='li' />
-                              ) : null}
-                            </Fragment>
-                          ))
-                        }
-                      </List>
-                    </ExpansionPanelDetails>
-                  </ExpansionPanel>
-                );
-              })
-              : 'Sorry'
-          }
-        </ActivityRoot>
-      );
+  componentDidUpdate(prevProp) {
+    const { userId, getVoteStat, getAuthStat } = this.props;
+    if (userId !== prevProp.userId) {
+      getVoteStat({ userId });
+      getAuthStat({ userId });
     }
+  }
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  handleChangeIndex = (index) => {
+    this.setState({ value: index });
+  };
+
+  render() {
+    const {
+      classes, theme, authActivity, votesActivity, languageText,
+    } = this.props;
+    const { value } = this.state;
+
+    return (
+      <div className={classes.root}>
+        <AppBar position='static' color='default'>
+          <Tabs
+            value={value}
+            onChange={this.handleChange}
+            indicatorColor='primary'
+            textColor='primary'
+            fullWidth
+          >
+            <Tab label={languageText.loginActivity} />
+            <Tab label={languageText.votesActivity} />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={this.handleChangeIndex}
+        >
+          <TabContainer dir={theme.direction}>
+            <LoginActivity
+              authActivity={authActivity}
+              languageText={languageText}
+            />
+          </TabContainer>
+          <TabContainer dir={theme.direction}>
+            <VotesActivity
+              votesActivity={votesActivity}
+              languageText={languageText}
+            />
+          </TabContainer>
+        </SwipeableViews>
+      </div>
+    );
+  }
 }
 
-
-export default withStyles(styles)(ActivityContainer);
+export default withStyles(styles, { withTheme: true })(ActivityContainer);

@@ -1,13 +1,22 @@
-### Sign in
+### Sign in 5bf2918d77167f22f6f3471e
 
 POST http://localhost:5000/api/auth/signin
 Content-Type: application/json
 
 {
-  "email": "test3@test.test",
-  "password": "qwerty123"
+  "email": "dianababurina74@gmail.com",
+  "password": "vast33255",
+  "activity": {
+    "date": "Fri Oct 19 2018 19:27:28",
+    "ip": "127.0.0.1",
+    "browser": "Chrome",
+    "os": "Linux"
+  }
 }
 
+### Get activity 5bf2918d77167f22f6f3471e
+
+GET http://localhost:5000/api/auth/activities/5bf2918d77167f22f6f3471e
 
 ### Sign up
 

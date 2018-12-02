@@ -38,6 +38,7 @@ export default {
     recent: 'Recent votings',
     all: 'All votings',
     groupMembers: 'Group members',
+    votingsAvailiable: 'New votings available',
   },
   groupSideBar: {
     createGroup: 'Create group',
@@ -124,8 +125,9 @@ export default {
   },
   welcome: 'Welcome to VoteUp!',
   activity: {
-    title: 'Look at your activity',
-    single: 'geoposition',
-    plural: 'geopositions',
+    loginActivity: 'Login activity',
+    votesActivity: 'Votes activity',
+    loginHeaders: ['Date', 'IP', 'Browser', 'OS'],
+    votesHeaders: ['Date', 'Topic', 'Candidate'],
   },
 };

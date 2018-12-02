@@ -220,6 +220,26 @@ export default class VotingController {
         }
     }
 
+    static async getLastVotes(ctx) {
+        const { userId } = ctx.params;
+
+        try {
+            const votings = await Vote.find({ userId }).sort({ dateVoting: -1 }).limit(10);
+
+            const votingsRes = await Promise.all(votings.map(async voting => ({
+                ...pick(voting, ['_id', 'dateVoting']),
+                votingTopic: (await Voting.findById(voting.votingId)).topic,
+                candidateName: (await Candidate.findById(voting.candidateId)).name,
+            })));
+
+            return (votingsRes && votingsRes.length)
+                ? ctx.send(200, votingsRes)
+                : ctx.send(204);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
 
     static async votingExists(ctx, next) {
         const { votingId } = ctx.params;

@@ -6,6 +6,7 @@ import pick from 'lodash.pick';
 import config from 'config';
 
 import User from '../models/User';
+import Activity from '../models/Activity';
 import errors from '../errors';
 
 const authErrors = errors.auth;
@@ -49,12 +50,20 @@ export default class AuthController {
 
     static async signIn(ctx) {
         try {
+            const { activity } = ctx.request.body;
+
             return passport.authenticate('local', { session: false }, async (err, user) => {
                 if (err || !user) {
                     return ctx.send(400, authErrors.incorrectCredentials);
                 }
 
                 await ctx.login(user, { session: false });
+
+                await Activity.create({
+                    _id: new mongoose.Types.ObjectId(),
+                    userId: user._id,
+                    ...activity,
+                });
 
                 const token = jwt.sign(
                     pick(user, ['_id', 'email', 'username']),
@@ -65,6 +74,20 @@ export default class AuthController {
 
                 return ctx.send(200, { token });
             })(ctx);
+        } catch (error) {
+            return ctx.send(500, error);
+        }
+    }
+
+    static async getActivity(ctx) {
+        const { userId } = ctx.params;
+
+        try {
+            const activities = await Activity.find({ userId }).sort({ date: -1 }).limit(10);
+
+            return (activities && activities.length)
+                ? ctx.send(200, activities)
+                : ctx.send(204);
         } catch (error) {
             return ctx.send(500, error);
         }

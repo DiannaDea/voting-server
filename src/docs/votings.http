@@ -19,6 +19,10 @@ Content-Type: application/json
 
 GET http://localhost:5000/api/votings/5bc9da58de27d540947ffa0a
 
+### Get last votings
+
+GET http://localhost:5000/api/votings/recent/5bf2918d77167f22f6f3471e
+
 ### Delete voting
 
 DELETE http://localhost:5000/api/votings/5bc9e5560449594aa9c197f3

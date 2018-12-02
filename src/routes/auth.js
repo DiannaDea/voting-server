@@ -33,10 +33,27 @@ authRouter.route({
         body: {
             email: Joi.string().email(),
             password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+            activity: Joi.object({
+                date: Joi.date().required(),
+                ip: Joi.string().required(),
+                browser: Joi.string().required(),
+                os: Joi.string().required(),
+            }),
         },
         type: 'json',
     },
     handler: AuthController.signIn,
+});
+
+authRouter.route({
+    method: 'get',
+    path: '/activities/:userId',
+    validate: {
+        params: {
+            userId: Joi.string().required(),
+        },
+    },
+    handler: AuthController.getActivity,
 });
 
 authRouter.route({

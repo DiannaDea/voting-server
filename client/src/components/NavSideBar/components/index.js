@@ -8,6 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import styled from 'styled-components';
 import { Badge } from 'reactstrap';
+import { NotificationManager } from 'react-notifications';
 
 const GroupContainer = styled.div`
     width: 100%;
@@ -34,7 +35,7 @@ class NavSideBar extends Component {
 
     componentDidUpdate(prevProps) {
       const {
-        getNewVotings, getRecentVotings, curGroupId, userId,
+        getNewVotings, getRecentVotings, curGroupId, userId, votingsNew, languageText,
       } = this.props;
       const { openNew, openRecent } = this.state;
 
@@ -44,6 +45,10 @@ class NavSideBar extends Component {
 
         if (!openNew) this.toggleVotings('new');
         if (openRecent) this.toggleVotings('recent');
+      }
+
+      if (prevProps.votingsNew.length !== votingsNew.length && votingsNew.length > 0) {
+        NotificationManager.success('', languageText.votingsAvailiable);
       }
     }
 

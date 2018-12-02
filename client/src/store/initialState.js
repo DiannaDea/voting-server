@@ -46,4 +46,9 @@ export default {
     results: {},
     error: null,
   },
+  userActivity: {
+    auth: [],
+    votes: [],
+    error: null,
+  },
 };

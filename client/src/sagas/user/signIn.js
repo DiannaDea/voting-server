@@ -1,4 +1,7 @@
 import axios from 'axios/index';
+import ip from 'ip';
+import moment from 'moment';
+import { detect } from 'detect-browser';
 import { put, call } from 'redux-saga/effects';
 import { NotificationManager } from 'react-notifications';
 import { BASE_URL } from '../../constants/index';
@@ -13,6 +16,8 @@ import {
 const curLang = localStorage.getItem('lang');
 const { notifications } = text[curLang];
 
+const browser = detect();
+
 export default function* signIn({ payload }) {
   const { email, password } = payload;
 
@@ -23,6 +28,12 @@ export default function* signIn({ payload }) {
       data: {
         email: (email === '1') ? 'test3@test.test' : email,
         password: (password === '1') ? 'qwerty123' : password,
+        activity: {
+          date: moment(new Date()).format('YYYY-MM-DDTkk:mm'),
+          ip: ip.address(),
+          browser: browser.name,
+          os: browser.os,
+        },
       },
     });
 

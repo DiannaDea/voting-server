@@ -8,6 +8,7 @@ import userReducer from './user';
 import joinGroupReducer from './joinGroup';
 import languageReducer from './languages';
 import resultsReducer from './votingResults';
+import userActivityReducer from './activity';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   joinGroup: joinGroupReducer,
   language: languageReducer,
   votingResults: resultsReducer,
+  userActivity: userActivityReducer,
 });
 
 export default rootReducer;

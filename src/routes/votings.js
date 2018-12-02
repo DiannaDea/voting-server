@@ -29,6 +29,17 @@ votingsRouter.route({
     handler: VotingController.create,
 });
 
+votingsRouter.route({
+    method: 'get',
+    path: '/recent/:userId',
+    validate: {
+        params: {
+            userId: Joi.string().required(),
+        },
+    },
+    handler: VotingController.getLastVotes,
+});
+
 votingsRouter.use('/:votingId', VotingController.votingExists);
 
 votingsRouter.route({
