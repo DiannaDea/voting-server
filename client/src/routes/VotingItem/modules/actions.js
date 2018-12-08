@@ -8,6 +8,9 @@ import {
   SEND_VOTE_INIT,
   SEND_VOTE_SUCCESS,
   SEND_VOTE_ERROR,
+  CHECK_USER_CAN_VOTE_INIT,
+  CHECK_USER_CAN_VOTE_SUCCESS,
+  CHECK_USER_CAN_VOTE_ERROR,
 } from './types';
 
 export const getOneVotingInit = payload => ({
@@ -52,5 +55,20 @@ export const sendVoteSuccess = payload => ({
 
 export const sendVoteError = payload => ({
   type: SEND_VOTE_ERROR,
+  payload,
+});
+
+export const checkUserCanVoteInit = payload => ({
+  type: CHECK_USER_CAN_VOTE_INIT,
+  payload,
+});
+
+export const checkUserCanVoteSuccess = payload => ({
+  type: CHECK_USER_CAN_VOTE_SUCCESS,
+  payload,
+});
+
+export const checkUserCanVoteError = payload => ({
+  type: CHECK_USER_CAN_VOTE_ERROR,
   payload,
 });

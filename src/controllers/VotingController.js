@@ -212,9 +212,9 @@ export default class VotingController {
                 votingId, userId,
             });
 
-            return (userVote)
-                ? ctx.send(200, userVote)
-                : ctx.send(204);
+            return (userVote && Object.keys(userVote).length)
+                ? ctx.send(200, true)
+                : ctx.send(200, false);
         } catch (error) {
             return ctx.send(500, error);
         }

@@ -20,6 +20,7 @@ export default {
       lastVoting: {
         data: null,
         candidates: [],
+        userVoted: false,
       },
     },
     error: null,

@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import dateFormat from 'dateformat';
 import Button from '@material-ui/core/Button';
+import queryString from 'query-string';
 import CandidatesContainer from './CandidatesContainer';
 import CoefficientsContainer from './CoefficientsContainer';
 import VoteModal from './VoteModal';
@@ -45,15 +46,24 @@ class VotingItem extends Component {
   };
 
   componentDidMount() {
-    const { match, getOneVoting } = this.props;
+    const {
+      match, getOneVoting, location, checkUserCanVote,
+    } = this.props;
     const { id } = match.params;
 
+    const userId = queryString.parse(location.search);
+
     getOneVoting({ id });
+
+    checkUserCanVote({
+      votingId: id,
+      userId,
+    });
   }
 
   componentDidUpdate(prevProps) {
     const {
-      match, voting, getVotingCandidates, getOneVoting,
+      match, voting, getVotingCandidates, getOneVoting, checkUserCanVote, userId,
     } = this.props;
     const { id } = match.params;
 
@@ -63,6 +73,10 @@ class VotingItem extends Component {
     if (voting && prevProps.voting !== voting) {
       getVotingCandidates({
         votingId: voting._id,
+      });
+      checkUserCanVote({
+        votingId: id,
+        userId,
       });
     }
   }
@@ -79,7 +93,7 @@ class VotingItem extends Component {
 
   render() {
     const {
-      voting, candidates, firstName, lastName, sendVote, userId, languageText,
+      voting, candidates, firstName, lastName, sendVote, userId, languageText, userVoted,
     } = this.props;
     const { isVoteModalOpen } = this.state;
 
@@ -98,6 +112,7 @@ class VotingItem extends Component {
             (voting.status === 'pending')
               ? (
                 <Button
+                  disabled={userVoted}
                   variant='contained'
                   color='primary'
                   onClick={() => this.toggleVoteModal(true)}

@@ -67,10 +67,12 @@ class NavSideBar extends Component {
     };
 
     getVotingsForRender = (votings) => {
+      const { userId } = this.props;
+
       return (votings && votings.length)
         ? votings.map(({ topic, _id }) => (
           <ListItem button key={_id}>
-            <Link to={`/app/votings/${_id}`}>
+            <Link to={`/app/votings/${_id}?userId=${userId}`}>
               <SubItemText inset primary={`# ${topic}`} />
             </Link>
           </ListItem>))
