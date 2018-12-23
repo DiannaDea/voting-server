@@ -12,7 +12,17 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SelectLang from '../../../components/SelectLang';
 
+import loginBg from '../assets/loginBg.jpg';
+
 const styles = theme => ({
+  loginContainer: {
+    width: '100vw',
+    height: '100vh',
+    backgroundImage: `url(${loginBg})`,
+    backgroundSize: 'cover',
+    position: 'absolute',
+    top: 0,
+  },
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
@@ -29,7 +39,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 6}px ${theme.spacing.unit * 7}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -39,6 +49,9 @@ const styles = theme => ({
     width: '100%',
     marginTop: theme.spacing.unit,
   },
+  submit: {
+    marginTop: `${theme.spacing.unit * 3}px`,
+  }
 });
 
 class LoginForm extends Component {
@@ -67,18 +80,13 @@ class LoginForm extends Component {
       const { email, password } = this.state;
 
       return (
-        <Fragment>
+        <div className={classes.loginContainer}>
           {
             (localStorage.getItem('token'))
               ? <Redirect to='/app' />
               : (
                 <main className={classes.main}>
-                  <SelectLang />
-                  <CssBaseline />
                   <Paper className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                      <LockIcon />
-                    </Avatar>
                     <Typography component='h1' variant='h5'>
                       {languageText.title}
                     </Typography>
@@ -89,11 +97,15 @@ class LoginForm extends Component {
                       </Link>
                     </Typography>
                     <form className={classes.form}>
+                      <FormControl margin='normal' fullWidth>
+                        <InputLabel htmlFor='email'>{languageText.chooseLanguage}</InputLabel>
+                        <SelectLang />
+                      </FormControl>
                       <FormControl margin='normal' required fullWidth>
-                        <InputLabel htmlFor='email'>{languageText.email}</InputLabel>
+                        <InputLabel htmlFor='lang'>{languageText.email}</InputLabel>
                         <Input
-                          id='email'
-                          name='email'
+                          id='lang'
+                          name='lang'
                           autoFocus
                           value={email}
                           onChange={event => this.handleChange(event, 'email')}
@@ -124,7 +136,7 @@ class LoginForm extends Component {
               )
           }
 
-        </Fragment>
+        </div>
       );
     }
 }

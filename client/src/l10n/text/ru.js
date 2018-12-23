@@ -68,6 +68,7 @@ export default {
     email: 'Электронная почта',
     password: 'Пароль',
     buttonSignIn: 'Войти',
+    chooseLanguage: 'Выберите язык',
   },
   createGroup: {
     title: 'Создать группу',

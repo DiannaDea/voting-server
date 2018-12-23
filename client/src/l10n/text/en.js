@@ -66,6 +66,7 @@ export default {
       link: 'Create now!',
     },
     email: 'Email Address',
+    chooseLanguage: 'Choose app language',
     password: 'Password',
     buttonSignIn: 'Sign in',
   },
