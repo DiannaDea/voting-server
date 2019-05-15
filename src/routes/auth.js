@@ -13,7 +13,7 @@ authRouter.route({
     validate: {
         body: {
             email: Joi.string().email(),
-            password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+            password: Joi.string().regex(/^[a-zA-Z0-9]{6,30}$/),
             firstName: Joi.string().alphanum().min(1).max(30)
                 .required(),
             lastName: Joi.string().alphanum().min(1).max(30)
@@ -32,7 +32,7 @@ authRouter.route({
     validate: {
         body: {
             email: Joi.string().email(),
-            password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+            password: Joi.string().regex(/^[a-zA-Z0-9]{6,30}$/),
             activity: Joi.object({
                 date: Joi.date().required(),
                 ip: Joi.string().required(),

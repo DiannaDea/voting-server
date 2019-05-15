@@ -11,7 +11,7 @@ groupsRouter.route({
     path: '/',
     validate: {
         body: {
-            name: Joi.string().alphanum().min(1).max(30)
+            name: Joi.string().min(1).max(30)
                 .required(),
             adminEmail: Joi.string().email(),
             membersEmails: Joi.array(),
